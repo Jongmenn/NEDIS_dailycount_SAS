@@ -1,11 +1,11 @@
 
-libname a 'D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\output';
-libname b 'D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2021\ÀÚ·á\NEDIS\outdata';
+libname a 'D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\output';
+libname b 'D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2021\ìžë£Œ\NEDIS\outdata';
 
  DATA A.NEDIS20_REV; SET  A.NEDIS20 ;
 
 RENAME PTMIEMAR=E_SGG PTMIEMNM=HOSPT PTMIINDT=E_DATE PTMIBRTD=AGE_GROUP PTMISEXX=SEX PTMIGUCD=P_SGG PTMIAKDT=DATE
-/*ÀÀ±Þ½Ç Åð½Ç Áø´Ü ÄÚµå */
+/*ì‘ê¸‰ì‹¤ í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 DGOTDIAG01=DIS_A01    DGOTDGGB01=DIS_B01
 DGOTDIAG02=DIS_A02    DGOTDGGB02=DIS_B02
 DGOTDIAG03=DIS_A03    DGOTDGGB03=DIS_B03
@@ -27,7 +27,7 @@ DGOTDIAG18=DIS_A18    DGOTDGGB18=DIS_B18
 DGOTDIAG19=DIS_A19    DGOTDGGB19=DIS_B19
 DGOTDIAG20=DIS_A20    DGOTDGGB20=DIS_B20
 
-/*ÀÀ±Þ½Ç Åð¿ø Áø´Ü ÄÚµå */
+/*ì‘ê¸‰ì‹¤ í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 DGDCDIAG01=DIS_E_A01 DGDCDGGB01=DIS_E_B01
 DGDCDIAG02=DIS_E_A02 DGDCDGGB02=DIS_E_B02
 DGDCDIAG03=DIS_E_A03 DGDCDGGB03=DIS_E_B03
@@ -49,15 +49,15 @@ DGDCDIAG18=DIS_E_A18 DGDCDGGB18=DIS_E_B18
 DGDCDIAG19=DIS_E_A19 DGDCDGGB19=DIS_E_B19
 DGDCDIAG20=DIS_E_A20 DGDCDGGB20=DIS_E_B20
 ;
-/*½Ãµµ º¯¼ö Ãß°¡ */
+/*ì‹œë„ ë³€ìˆ˜ ì¶”ê°€ */
 SIDO =SUBSTR(left(PTMIEMAR),1,2);
 
-/*ÀÀ±Þ½Ç(³»¿ø) ¹æ¹®³â¿øÀÏ */
+/*ì‘ê¸‰ì‹¤(ë‚´ì›) ë°©ë¬¸ë…„ì›ì¼ */
 E_YR   =SUBSTR(LEFT(PTMIINDT),1,4);
 E_MON=SUBSTR(LEFT(PTMIINDT),5,2);
 E_DAY =SUBSTR(LEFT(PTMIINDT),7,2);
 
-/*¹ßº´ÀÏÀÚ (ÀÀ±Þ½Ç ¹æ¹®ÀÏ º¸´Ù ºü¸¦ ¼ö ÀÖÀ½) */
+/*ë°œë³‘ì¼ìž (ì‘ê¸‰ì‹¤ ë°©ë¬¸ì¼ ë³´ë‹¤ ë¹ ë¥¼ ìˆ˜ ìžˆìŒ) */
 YR   =SUBSTR(LEFT(PTMIAKDT),1,4);
 MON=SUBSTR(LEFT(PTMIAKDT),5,2);
 DAY  =SUBSTR(LEFT(PTMIAKDT),7,2);
@@ -67,40 +67,40 @@ DATA A.NEDIS14_20; SET B.NEDIS A.NEDIS20_REV; RUN;
 
 PROC FREQ DATA=A.NEDIS14_20; TABLES YR E_YR;RUN;
 
-/*Åð½ÇÁø´Ü ÄÚµå 20°³ °ËÅä */
+/*í‡´ì‹¤ì§„ë‹¨ ì½”ë“œ 20ê°œ ê²€í†  */
 PROC FREQ DATA=A.NEDIS14_20; TABLES DIS_A01-DIS_A20 ;RUN;
-/*Åð¿øÁø´Ü ÄÚµå 20°³ °ËÅä */
+/*í‡´ì›ì§„ë‹¨ ì½”ë“œ 20ê°œ ê²€í†  */
 PROC FREQ DATA=A.NEDIS14_20; TABLES DIS_E_A01-DIS_E_A20 ; RUN;
 
-/*NEDIS ÀÚ·á ÇüÅÂ¶û ¸ÂÃç¼­ ¿¬·É ±×·ì */
-/*µ¥ÀÌÅÍ Å¬¸®´× ¹× ÀÚ·á Á¤¸® */
+/*NEDIS ìžë£Œ í˜•íƒœëž‘ ë§žì¶°ì„œ ì—°ë ¹ ê·¸ë£¹ */
+/*ë°ì´í„° í´ë¦¬ë‹ ë° ìžë£Œ ì •ë¦¬ */
 DATA A.NEDIS_R; SET A.NEDIS14_20;
-IF P_SGG="." THEN SGG=E_SGG; ELSE SGG=P_SGG; /*È¯ÀÚÀÇ °ÅÁÖÁö Á¤º¸ ¾ø´Â °æ¿ì´Â ÀÀ±Þ½Ç ³»¿ø °ÅÁÖÁö·Î ³Ö¾îÁÖ±â (¿ÀºÐ·ù ÀÖÀ»¼ö ÀÖÁö¸¸)*/
-IF P_SGG="." THEN SGG_TF=1; ELSE SGG_TF=0;       /*È¯ÀÚÀÇ °ÅÁÖÁö Á¤º¸ ¾ø´Â °æ¿ì´Â 1, Á¸ÀçÇÏ¸é 0*/
-SIDO_R= SUBSTR(LEFT(SGG),1,2);                          /*»õ·Î Á¤ÀÇÇÑ ½Ã±º±¸¿¡ ÇØ´çÇÏ´Â ½Ãµµ ÀÚ·á·Î º¯°æ*/
+IF P_SGG="." THEN SGG=E_SGG; ELSE SGG=P_SGG; /*í™˜ìžì˜ ê±°ì£¼ì§€ ì •ë³´ ì—†ëŠ” ê²½ìš°ëŠ” ì‘ê¸‰ì‹¤ ë‚´ì› ê±°ì£¼ì§€ë¡œ ë„£ì–´ì£¼ê¸° (ì˜¤ë¶„ë¥˜ ìžˆì„ìˆ˜ ìžˆì§€ë§Œ)*/
+IF P_SGG="." THEN SGG_TF=1; ELSE SGG_TF=0;       /*í™˜ìžì˜ ê±°ì£¼ì§€ ì •ë³´ ì—†ëŠ” ê²½ìš°ëŠ” 1, ì¡´ìž¬í•˜ë©´ 0*/
+SIDO_R= SUBSTR(LEFT(SGG),1,2);                          /*ìƒˆë¡œ ì •ì˜í•œ ì‹œêµ°êµ¬ì— í•´ë‹¹í•˜ëŠ” ì‹œë„ ìžë£Œë¡œ ë³€ê²½*/
 
-/*¿¬·É ±×·ì ÀÚ·á ¸¸µé±â */
-/*5¼¼ ´ÜÀ§·Î ¿¬·É ±×·ì */
-IF AGE_GROUP <=2  THEN AG=1;     /*0-4¼¼*/
-IF AGE_GROUP =3    THEN AG=2;     /*5-9¼¼*/
-IF AGE_GROUP =4    THEN AG=3;     /*10-14¼¼*/
-IF AGE_GROUP =5    THEN AG=4;     /*15-19¼¼*/
-IF AGE_GROUP =6    THEN AG=5;     /*20-24¼¼*/
-IF AGE_GROUP =7    THEN AG=6;     /*25-29¼¼*/
-IF AGE_GROUP =8    THEN AG=7;     /*30-34¼¼*/
-IF AGE_GROUP =9    THEN AG=8;     /*35-39¼¼*/
-IF AGE_GROUP =10  THEN AG=9;     /*40-44¼¼*/
-IF AGE_GROUP =11  THEN AG=10;   /*45-49¼¼*/
-IF AGE_GROUP =12  THEN AG=11;   /*50-54¼¼*/
-IF AGE_GROUP =13  THEN AG=12;   /*55-59¼¼*/
-IF AGE_GROUP =14  THEN AG=13;   /*60-64¼¼*/
-IF AGE_GROUP =15  THEN AG=14;   /*65-69¼¼*/
-IF AGE_GROUP =16  THEN AG=15;   /*70-74¼¼*/
-IF AGE_GROUP =17  THEN AG=16;   /*75-79¼¼*/
-IF AGE_GROUP =18  THEN AG=17;   /*80-84¼¼*/
+/*ì—°ë ¹ ê·¸ë£¹ ìžë£Œ ë§Œë“¤ê¸° */
+/*5ì„¸ ë‹¨ìœ„ë¡œ ì—°ë ¹ ê·¸ë£¹ */
+IF AGE_GROUP <=2  THEN AG=1;     /*0-4ì„¸*/
+IF AGE_GROUP =3    THEN AG=2;     /*5-9ì„¸*/
+IF AGE_GROUP =4    THEN AG=3;     /*10-14ì„¸*/
+IF AGE_GROUP =5    THEN AG=4;     /*15-19ì„¸*/
+IF AGE_GROUP =6    THEN AG=5;     /*20-24ì„¸*/
+IF AGE_GROUP =7    THEN AG=6;     /*25-29ì„¸*/
+IF AGE_GROUP =8    THEN AG=7;     /*30-34ì„¸*/
+IF AGE_GROUP =9    THEN AG=8;     /*35-39ì„¸*/
+IF AGE_GROUP =10  THEN AG=9;     /*40-44ì„¸*/
+IF AGE_GROUP =11  THEN AG=10;   /*45-49ì„¸*/
+IF AGE_GROUP =12  THEN AG=11;   /*50-54ì„¸*/
+IF AGE_GROUP =13  THEN AG=12;   /*55-59ì„¸*/
+IF AGE_GROUP =14  THEN AG=13;   /*60-64ì„¸*/
+IF AGE_GROUP =15  THEN AG=14;   /*65-69ì„¸*/
+IF AGE_GROUP =16  THEN AG=15;   /*70-74ì„¸*/
+IF AGE_GROUP =17  THEN AG=16;   /*75-79ì„¸*/
+IF AGE_GROUP =18  THEN AG=17;   /*80-84ì„¸*/
 IF AGE_GROUP>=19 THEN AG=18;   /*85+ */
 
-/*15¼¼ ¹Ì¸¸, 15-64¼¼ ,65¼¼ ÀÌ»ó */
+/*15ì„¸ ë¯¸ë§Œ, 15-64ì„¸ ,65ì„¸ ì´ìƒ */
 IF AGE_GROUP <=4 THEN AG2=1; 
 IF AGE_GROUP >=5 & AGE_GROUP <=14 THEN AG2=2;
 IF AGE_GROUP >=15 THEN AG2=3;
@@ -110,42 +110,42 @@ PROC FREQ DATA=A.NEDIS_R; TABLES E_YR*AG/LIST; RUN;
 
 /*****************************************************************************************/
 /*****************************************************************************************/
-/*½Ãµµ, ½Ã±º±¸ ·¹ÀÌºí ÀÚ·á ºÒ·¯¿Í¼­ ¿¬°èÇÏ±â */
-PROC IMPORT OUT=A.SGG DATAFILE="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2021\ÀÚ·á\NEDIS\½Ã±º±¸ÄÚµå.CSV" DBMS=CSV REPLACE; RUN;
-PROC IMPORT OUT=A.SIDO DATAFILE="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2021\ÀÚ·á\NEDIS\½ÃµµÄÚµå.CSV" DBMS=CSV REPLACE; RUN;
+/*ì‹œë„, ì‹œêµ°êµ¬ ë ˆì´ë¸” ìžë£Œ ë¶ˆëŸ¬ì™€ì„œ ì—°ê³„í•˜ê¸° */
+PROC IMPORT OUT=A.SGG DATAFILE="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2021\ìžë£Œ\NEDIS\ì‹œêµ°êµ¬ì½”ë“œ.CSV" DBMS=CSV REPLACE; RUN;
+PROC IMPORT OUT=A.SIDO DATAFILE="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2021\ìžë£Œ\NEDIS\ì‹œë„ì½”ë“œ.CSV" DBMS=CSV REPLACE; RUN;
 
-/*½ÃµµÀÚ·á ¼Ó¼º º¯°æ */
+/*ì‹œë„ìžë£Œ ì†ì„± ë³€ê²½ */
 DATA A.SIDO; SET A.SIDO;
 SIDO_R=INPUT(SIDO,$12.);
 DROP SIDO;
 RUN;
 
-/*NEDISÀÚ·á¿Í ½Ã±º±¸, ½Ãµµ ÀÚ·á ¿¬°è (ÇÑ±Û ·¹ÀÌºí)*/
+/*NEDISìžë£Œì™€ ì‹œêµ°êµ¬, ì‹œë„ ìžë£Œ ì—°ê³„ (í•œê¸€ ë ˆì´ë¸”)*/
 PROC SQL; CREATE TABLE A.NEDIS_R2 AS SELECT * FROM A.NEDIS_R AS A LEFT JOIN A.SGG AS B ON A.SGG=B.SGG; QUIT;
 PROC SQL; CREATE TABLE A.NEDIS_R2 AS SELECT * FROM A.NEDIS_R2 AS A LEFT JOIN A.SIDO AS B ON A.SIDO_R =B.SIDO_R;QUIT;
 
 /*****************************************************************************************/
 /*****************************************************************************************/
-/*³¯Â¥ ÀÚ·á ÀÏÀÏ °Ç¼ö ÀÚ·á missingÀÎ ³¯ ¾øÀÌ Ã¤¿ì±â À§ÇØ  */
+/*ë‚ ì§œ ìžë£Œ ì¼ì¼ ê±´ìˆ˜ ìžë£Œ missingì¸ ë‚  ì—†ì´ ì±„ìš°ê¸° ìœ„í•´  */
 DATA A.DDATE ; 
 FORMAT DATE YYMMDD10.;
 DO I = 1 to 2557 BY 1;       
-DATE=MDY(01,01,2014)+I-1; /* ¹Ýº¹¹®À¸·Î ³¯Â¥ ¸¸µé±â 2014³â 1¿ù 1ÀÏºÎÅÍ 2020³â 12¿ù 31ÀÏ ±îÁö */
+DATE=MDY(01,01,2014)+I-1; /* ë°˜ë³µë¬¸ìœ¼ë¡œ ë‚ ì§œ ë§Œë“¤ê¸° 2014ë…„ 1ì›” 1ì¼ë¶€í„° 2020ë…„ 12ì›” 31ì¼ ê¹Œì§€ */
 OUTPUT;
 END;
 DROP I;
 RUN;
 DATA A.DDATE; SET A.DDATE;
-DATE2= PUT(DATE,YYMMDDN8.);RUN; /*³¯Â¥ -> ¹®ÀÚ·Î Çü½Ä º¯°æ */
+DATE2= PUT(DATE,YYMMDDN8.);RUN; /*ë‚ ì§œ -> ë¬¸ìžë¡œ í˜•ì‹ ë³€ê²½ */
 
-/*À§¿¡¼­ »ý¼ºÇÑ ±âÁØ¿¬µµ ³¯Â¥ ÀÚ·á¶û ½Ãµµ ÀÚ·á MERGEÇÏ±â (ÀÌ¶§ CROSS JOIN)*/
+/*ìœ„ì—ì„œ ìƒì„±í•œ ê¸°ì¤€ì—°ë„ ë‚ ì§œ ìžë£Œëž‘ ì‹œë„ ìžë£Œ MERGEí•˜ê¸° (ì´ë•Œ CROSS JOIN)*/
 proc sql; create table a.SIDODATE as select * from a.ddate cross join  a.SIDO; quit;
 
-/*KEY°ª ¸¸ ³²±â±â KEY=³¯Â¥+½Ã±º±¸  (³¯Â¥¿Í ½Ã±º±¸ Á¶ÇÕº° ÀÏÀÚ °è»ê, 3652ÀÏ * 250 =913000) */
+/*KEYê°’ ë§Œ ë‚¨ê¸°ê¸° KEY=ë‚ ì§œ+ì‹œêµ°êµ¬  (ë‚ ì§œì™€ ì‹œêµ°êµ¬ ì¡°í•©ë³„ ì¼ìž ê³„ì‚°, 3652ì¼ * 250 =913000) */
 DATA a.SIDOdate; SET a.SIDOdate; KEY=COMPRESS(DATE2)||("-")||COMPRESS(SIDO_R); KEEP KEY SIDO_KR; RUN;
 
 
-/*Ç¥·Î ¿Å±æ¶§ °ø¹é ¹Ì¸® ¸¸µé¾îÁÖ±â */
+/*í‘œë¡œ ì˜®ê¸¸ë•Œ ê³µë°± ë¯¸ë¦¬ ë§Œë“¤ì–´ì£¼ê¸° */
 data a.null_tb; 
 Options obs=max;
 input category$ Y_2014 Y_2015 Y_2016 Y_2017 Y_2018 Y_2019 Y_2020;
@@ -158,17 +158,17 @@ CARDS;
 /*****************************************************************************************/
 /*****************************************************************************************/
 
-/*disease: Áúº´¸í
- s_code: ¿¬¼ÓÀûÀÎ »óº´ÄÚµå Áß Ã¹¹øÂ°,
- e_code: ¿¬¼ÓÀûÀÎ »óº´ÄÚµå Áß ¸¶Áö¸·,
- k: »óº´ÄÚµå ÀÚ¸´¼ö ÁöÁ¤ (3´Ü»óº´ÀÌ¸é 3, 4´Ü»óº´ÀÌ¸é 4)*/
+/*disease: ì§ˆë³‘ëª…
+ s_code: ì—°ì†ì ì¸ ìƒë³‘ì½”ë“œ ì¤‘ ì²«ë²ˆì§¸,
+ e_code: ì—°ì†ì ì¸ ìƒë³‘ì½”ë“œ ì¤‘ ë§ˆì§€ë§‰,
+ k: ìƒë³‘ì½”ë“œ ìžë¦¿ìˆ˜ ì§€ì • (3ë‹¨ìƒë³‘ì´ë©´ 3, 4ë‹¨ìƒë³‘ì´ë©´ 4)*/
 
 %MACRO DISEASE_COUNT(DISEASE,S_CODE,E_CODE,K);
 DATA A.DAT ;  SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,&K.)>=&S_CODE. & SUBSTR(DIS_A01,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_A02,1,&K.)>=&S_CODE. & SUBSTR(DIS_A02,1,&K.)<=&E_CODE. OR
@@ -191,7 +191,7 @@ SUBSTR(DIS_A18,1,&K.)>=&S_CODE. & SUBSTR(DIS_A18,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_A19,1,&K.)>=&S_CODE. & SUBSTR(DIS_A19,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_A20,1,&K.)>=&S_CODE. & SUBSTR(DIS_A20,1,&K.)<=&E_CODE. OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A01,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_E_A02,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A02,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_E_A03,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A03,1,&K.)<=&E_CODE. OR
@@ -213,150 +213,150 @@ SUBSTR(DIS_E_A18,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A18,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_E_A19,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A19,1,&K.)<=&E_CODE. OR
 SUBSTR(DIS_E_A20,1,&K.)>=&S_CODE. & SUBSTR(DIS_E_A20,1,&K.)<=&E_CODE. ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
-/*µ¥ÀÌÅÍ Á¤·Ä */
+/*ë°ì´í„° ì •ë ¬ */
 PROC SORT DATA=A.DAT; BY E_DDATE SIDO_R AG; RUN;
 
-/*º¯¼ö Ä«¿îÆ® ¸ñÀûÀ¸·Î ÀçÁ¤¸® */
+/*ë³€ìˆ˜ ì¹´ìš´íŠ¸ ëª©ì ìœ¼ë¡œ ìž¬ì •ë¦¬ */
 DATA A.DAT ;SET A.DAT;
 
-/*ÀüÃ¼ */
+/*ì „ì²´ */
 TOT=1; 
 
-/*¼ºº°*/
+/*ì„±ë³„*/
 IF SEX="M" THEN MALE=1; ELSE MALE=0;
 IF SEX="F" THEN FEMALE=1; ELSE FEMALE=0;
 
-/*¿¬·É ¹Ì»ó Á¦¿Ü */
+/*ì—°ë ¹ ë¯¸ìƒ ì œì™¸ */
 IF AGE_GROUP ^=""; 
 
-/*¿¬·É ±×·ìº°, 5¼¼ ´ÜÀ§ */
-IF AG=1   THEN AG01=1; ELSE AG01=0; /*0-4¼¼*/
-IF AG=2   THEN AG02=1; ELSE AG02=0; /*5-9¼¼*/
-IF AG=3   THEN AG03=1; ELSE AG03=0; /*10-14¼¼*/
-IF AG=4   THEN AG04=1; ELSE AG04=0; /*15-19¼¼*/
-IF AG=5   THEN AG05=1; ELSE AG05=0; /*20-24¼¼*/
-IF AG=6   THEN AG06=1; ELSE AG06=0; /*25-29¼¼*/
-IF AG=7   THEN AG07=1; ELSE AG07=0; /*30-34¼¼*/
-IF AG=8   THEN AG08=1; ELSE AG08=0; /*35-39¼¼*/
-IF AG=9   THEN AG09=1; ELSE AG09=0; /*40-44¼¼*/
-IF AG=10 THEN AG10=1; ELSE AG10=0; /*45-49¼¼*/
-IF AG=11 THEN AG11=1; ELSE AG11=0; /*50-54¼¼*/
-IF AG=12 THEN AG12=1; ELSE AG12=0; /*55-59¼¼*/
-IF AG=13 THEN AG13=1; ELSE AG13=0; /*60-64¼¼*/
-IF AG=14 THEN AG14=1; ELSE AG14=0; /*65-69¼¼*/
-IF AG=15 THEN AG15=1; ELSE AG15=0; /*70-74¼¼*/
-IF AG=16 THEN AG16=1; ELSE AG16=0; /*75-79¼¼*/
-IF AG=17 THEN AG17=1; ELSE AG17=0; /*80-84¼¼*/
-IF AG=18 THEN AG18=1; ELSE AG18=0; /*85¼¼+   */
+/*ì—°ë ¹ ê·¸ë£¹ë³„, 5ì„¸ ë‹¨ìœ„ */
+IF AG=1   THEN AG01=1; ELSE AG01=0; /*0-4ì„¸*/
+IF AG=2   THEN AG02=1; ELSE AG02=0; /*5-9ì„¸*/
+IF AG=3   THEN AG03=1; ELSE AG03=0; /*10-14ì„¸*/
+IF AG=4   THEN AG04=1; ELSE AG04=0; /*15-19ì„¸*/
+IF AG=5   THEN AG05=1; ELSE AG05=0; /*20-24ì„¸*/
+IF AG=6   THEN AG06=1; ELSE AG06=0; /*25-29ì„¸*/
+IF AG=7   THEN AG07=1; ELSE AG07=0; /*30-34ì„¸*/
+IF AG=8   THEN AG08=1; ELSE AG08=0; /*35-39ì„¸*/
+IF AG=9   THEN AG09=1; ELSE AG09=0; /*40-44ì„¸*/
+IF AG=10 THEN AG10=1; ELSE AG10=0; /*45-49ì„¸*/
+IF AG=11 THEN AG11=1; ELSE AG11=0; /*50-54ì„¸*/
+IF AG=12 THEN AG12=1; ELSE AG12=0; /*55-59ì„¸*/
+IF AG=13 THEN AG13=1; ELSE AG13=0; /*60-64ì„¸*/
+IF AG=14 THEN AG14=1; ELSE AG14=0; /*65-69ì„¸*/
+IF AG=15 THEN AG15=1; ELSE AG15=0; /*70-74ì„¸*/
+IF AG=16 THEN AG16=1; ELSE AG16=0; /*75-79ì„¸*/
+IF AG=17 THEN AG17=1; ELSE AG17=0; /*80-84ì„¸*/
+IF AG=18 THEN AG18=1; ELSE AG18=0; /*85ì„¸+   */
 
-/*¿¬·É ±×·ì 5¼¼, 15-64, 65¼¼ ÀÌ»ó*/
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸, 15-64, 65ì„¸ ì´ìƒ*/
 IF AG2=1 THEN AG2_01=1; ELSE AG2_01=0;
 IF AG2=2 THEN AG2_02=1; ELSE AG2_02=0;
 IF AG2=3 THEN AG2_03=1; ELSE AG2_03=0;
 
-/*¼º ¿¬·É Á¶ÇÕ 1*/
-IF SEX="M" & AG=1   THEN M_AG01=1; ELSE M_AG01=0; /*0-4¼¼ & ³²¼º */
-IF SEX="M" & AG=2   THEN M_AG02=1; ELSE M_AG02=0; /*5-9¼¼ & ³²¼º */
-IF SEX="M" & AG=3   THEN M_AG03=1; ELSE M_AG03=0; /*10-14¼¼ & ³²¼º */
-IF SEX="M" & AG=4   THEN M_AG04=1; ELSE M_AG04=0; /*15-19¼¼ & ³²¼º */
-IF SEX="M" & AG=5   THEN M_AG05=1; ELSE M_AG05=0; /*20-24¼¼ & ³²¼º */
-IF SEX="M" & AG=6   THEN M_AG06=1; ELSE M_AG06=0; /*25-29¼¼ & ³²¼º */
-IF SEX="M" & AG=7   THEN M_AG07=1; ELSE M_AG07=0; /*30-34¼¼ & ³²¼º */
-IF SEX="M" & AG=8   THEN M_AG08=1; ELSE M_AG08=0; /*35-39¼¼ & ³²¼º */
-IF SEX="M" & AG=9   THEN M_AG09=1; ELSE M_AG09=0; /*40-44¼¼ & ³²¼º */
-IF SEX="M" & AG=10 THEN M_AG10=1; ELSE M_AG10=0; /*45-49¼¼ & ³²¼º */
-IF SEX="M" & AG=11 THEN M_AG11=1; ELSE M_AG11=0; /*50-54¼¼ & ³²¼º */
-IF SEX="M" & AG=12 THEN M_AG12=1; ELSE M_AG12=0; /*55-59¼¼ & ³²¼º */
-IF SEX="M" & AG=13 THEN M_AG13=1; ELSE M_AG13=0; /*60-64¼¼ & ³²¼º */
-IF SEX="M" & AG=14 THEN M_AG14=1; ELSE M_AG14=0; /*65-69¼¼ & ³²¼º */
-IF SEX="M" & AG=15 THEN M_AG15=1; ELSE M_AG15=0; /*70-74¼¼ & ³²¼º */
-IF SEX="M" & AG=16 THEN M_AG16=1; ELSE M_AG16=0; /*75-79¼¼ & ³²¼º */
-IF SEX="M" & AG=17 THEN M_AG17=1; ELSE M_AG17=0; /*80-84¼¼ & ³²¼º */ 
-IF SEX="M" & AG=18 THEN M_AG18=1; ELSE M_AG18=0; /*85¼¼ ÀÌ»ó & ³²¼º */
+/*ì„± ì—°ë ¹ ì¡°í•© 1*/
+IF SEX="M" & AG=1   THEN M_AG01=1; ELSE M_AG01=0; /*0-4ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=2   THEN M_AG02=1; ELSE M_AG02=0; /*5-9ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=3   THEN M_AG03=1; ELSE M_AG03=0; /*10-14ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=4   THEN M_AG04=1; ELSE M_AG04=0; /*15-19ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=5   THEN M_AG05=1; ELSE M_AG05=0; /*20-24ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=6   THEN M_AG06=1; ELSE M_AG06=0; /*25-29ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=7   THEN M_AG07=1; ELSE M_AG07=0; /*30-34ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=8   THEN M_AG08=1; ELSE M_AG08=0; /*35-39ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=9   THEN M_AG09=1; ELSE M_AG09=0; /*40-44ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=10 THEN M_AG10=1; ELSE M_AG10=0; /*45-49ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=11 THEN M_AG11=1; ELSE M_AG11=0; /*50-54ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=12 THEN M_AG12=1; ELSE M_AG12=0; /*55-59ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=13 THEN M_AG13=1; ELSE M_AG13=0; /*60-64ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=14 THEN M_AG14=1; ELSE M_AG14=0; /*65-69ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=15 THEN M_AG15=1; ELSE M_AG15=0; /*70-74ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=16 THEN M_AG16=1; ELSE M_AG16=0; /*75-79ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=17 THEN M_AG17=1; ELSE M_AG17=0; /*80-84ì„¸ & ë‚¨ì„± */ 
+IF SEX="M" & AG=18 THEN M_AG18=1; ELSE M_AG18=0; /*85ì„¸ ì´ìƒ & ë‚¨ì„± */
 
-IF SEX="F" & AG=1   THEN F_AG01=1; ELSE F_AG01=0; /*0-4¼¼ & ¿©¼º */
-IF SEX="F" & AG=2   THEN F_AG02=1; ELSE F_AG02=0; /*5-9¼¼ & ¿©¼º */
-IF SEX="F" & AG=3   THEN F_AG03=1; ELSE F_AG03=0; /*10-14¼¼ & ¿©¼º */
-IF SEX="F" & AG=4   THEN F_AG04=1; ELSE F_AG04=0; /*15-19¼¼ & ¿©¼º */
-IF SEX="F" & AG=5   THEN F_AG05=1; ELSE F_AG05=0; /*20-24¼¼ & ¿©¼º */
-IF SEX="F" & AG=6   THEN F_AG06=1; ELSE F_AG06=0; /*25-29¼¼ & ¿©¼º */
-IF SEX="F" & AG=7   THEN F_AG07=1; ELSE F_AG07=0; /*30-34¼¼ & ¿©¼º */
-IF SEX="F" & AG=8   THEN F_AG08=1; ELSE F_AG08=0; /*35-39¼¼ & ¿©¼º */
-IF SEX="F" & AG=9   THEN F_AG09=1; ELSE F_AG09=0; /*40-44¼¼ & ¿©¼º */
-IF SEX="F" & AG=10 THEN F_AG10=1; ELSE F_AG10=0; /*45-49¼¼ & ¿©¼º */
-IF SEX="F" & AG=11 THEN F_AG11=1; ELSE F_AG11=0; /*50-54¼¼ & ¿©¼º */
-IF SEX="F" & AG=12 THEN F_AG12=1; ELSE F_AG12=0; /*55-59¼¼ & ¿©¼º */
-IF SEX="F" & AG=13 THEN F_AG13=1; ELSE F_AG13=0; /*60-64¼¼ & ¿©¼º */
-IF SEX="F" & AG=14 THEN F_AG14=1; ELSE F_AG14=0; /*65-69¼¼ & ¿©¼º */
-IF SEX="F" & AG=15 THEN F_AG15=1; ELSE F_AG15=0; /*70-74¼¼ & ¿©¼º */
-IF SEX="F" & AG=16 THEN F_AG16=1; ELSE F_AG16=0; /*75-79¼¼ & ¿©¼º */
-IF SEX="F" & AG=17 THEN F_AG17=1; ELSE F_AG17=0; /*80-84¼¼ & ¿©¼º */ 
-IF SEX="F" & AG=18 THEN F_AG18=1; ELSE F_AG18=0; /*85¼¼ ÀÌ»ó & ¿©¼º */
+IF SEX="F" & AG=1   THEN F_AG01=1; ELSE F_AG01=0; /*0-4ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=2   THEN F_AG02=1; ELSE F_AG02=0; /*5-9ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=3   THEN F_AG03=1; ELSE F_AG03=0; /*10-14ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=4   THEN F_AG04=1; ELSE F_AG04=0; /*15-19ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=5   THEN F_AG05=1; ELSE F_AG05=0; /*20-24ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=6   THEN F_AG06=1; ELSE F_AG06=0; /*25-29ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=7   THEN F_AG07=1; ELSE F_AG07=0; /*30-34ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=8   THEN F_AG08=1; ELSE F_AG08=0; /*35-39ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=9   THEN F_AG09=1; ELSE F_AG09=0; /*40-44ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=10 THEN F_AG10=1; ELSE F_AG10=0; /*45-49ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=11 THEN F_AG11=1; ELSE F_AG11=0; /*50-54ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=12 THEN F_AG12=1; ELSE F_AG12=0; /*55-59ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=13 THEN F_AG13=1; ELSE F_AG13=0; /*60-64ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=14 THEN F_AG14=1; ELSE F_AG14=0; /*65-69ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=15 THEN F_AG15=1; ELSE F_AG15=0; /*70-74ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=16 THEN F_AG16=1; ELSE F_AG16=0; /*75-79ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=17 THEN F_AG17=1; ELSE F_AG17=0; /*80-84ì„¸ & ì—¬ì„± */ 
+IF SEX="F" & AG=18 THEN F_AG18=1; ELSE F_AG18=0; /*85ì„¸ ì´ìƒ & ì—¬ì„± */
 
-/*¼º ¿¬·É Á¶ÇÕ 2*/
-IF SEX="M" & AG2=1   THEN M_AG2_01=1; ELSE M_AG2_01=0; /*0-4¼¼ & ³²¼º */
-IF SEX="M" & AG2=2   THEN M_AG2_02=1; ELSE M_AG2_02=0; /*15-64¼¼ & ³²¼º */
-IF SEX="M" & AG2=3   THEN M_AG2_03=1; ELSE M_AG2_03=0; /*65¼¼ÀÌ»ó & ³²¼º */
+/*ì„± ì—°ë ¹ ì¡°í•© 2*/
+IF SEX="M" & AG2=1   THEN M_AG2_01=1; ELSE M_AG2_01=0; /*0-4ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG2=2   THEN M_AG2_02=1; ELSE M_AG2_02=0; /*15-64ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG2=3   THEN M_AG2_03=1; ELSE M_AG2_03=0; /*65ì„¸ì´ìƒ & ë‚¨ì„± */
 
-IF SEX="F" & AG2=1   THEN F_AG2_01=1; ELSE F_AG2_01=0; /*0-4¼¼ & ¿©¼º */
-IF SEX="F" & AG2=2   THEN F_AG2_02=1; ELSE F_AG2_02=0; /*15-64¼¼ & ¿©¼º */
-IF SEX="F" & AG2=3   THEN F_AG2_03=1; ELSE F_AG2_03=0; /*65¼¼ÀÌ»ó & ¿©¼º */
+IF SEX="F" & AG2=1   THEN F_AG2_01=1; ELSE F_AG2_01=0; /*0-4ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG2=2   THEN F_AG2_02=1; ELSE F_AG2_02=0; /*15-64ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG2=3   THEN F_AG2_03=1; ELSE F_AG2_03=0; /*65ì„¸ì´ìƒ & ì—¬ì„± */
 
-/*³¯Â¥º°+½Ãµµ key */
+/*ë‚ ì§œë³„+ì‹œë„ key */
 KEY=COMPRESS(E_DATE)||("-")||COMPRESS(SIDO_R); 
 RUN;
 
-/*°³º° Ç×¸ñº°·Î µ¥ÀÏ¸® Ä«¿îÆ® »êÃâ */
+/*ê°œë³„ í•­ëª©ë³„ë¡œ ë°ì¼ë¦¬ ì¹´ìš´íŠ¸ ì‚°ì¶œ */
 PROC SQL;CREATE TABLE A.TOT AS SELECT KEY, 
-/*ÀüÃ¼*/
+/*ì „ì²´*/
 SUM(TOT) AS TOT, 
 
-/*¼ºº°*/
+/*ì„±ë³„*/
 SUM(MALE) AS MALE, SUM(FEMALE) AS FEMALE,
 
-/*¿¬·É ±×·ì 5¼¼º° */
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸ë³„ */
 SUM(AG01) AS AG01, SUM(AG02) AS AG02,  SUM(AG03) AS AG03,  SUM(AG04) AS AG04, 
 SUM(AG05) AS AG05, SUM(AG06) AS AG06,  SUM(AG07) AS AG07,  SUM(AG08) AS AG08, 
 SUM(AG09) AS AG09, SUM(AG10) AS AG10,  SUM(AG11) AS AG11,  SUM(AG12) AS AG12, 
 SUM(AG13) AS AG13, SUM(AG14) AS AG14,  SUM(AG15) AS AG15,  SUM(AG16) AS AG16, 
 SUM(AG17) AS AG17, SUM(AG18) AS AG18, 
 
-/*¿¬·É ±×·ì 5¼¼ ¹Ì¸¸, 15-64¼¼ 65¼¼ ÀÌ»ó*/
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸ 65ì„¸ ì´ìƒ*/
 SUM(AG2_01) AS AG2_01, SUM(AG2_02) AS AG2_02,  SUM(AG2_03) AS AG2_03, 
 
-/*³²¼º ¿¬·É ±×·ìº° 5¼¼´ÜÀ§ */
+/*ë‚¨ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ë‹¨ìœ„ */
 SUM(M_AG01) AS M_AG01, SUM(M_AG02) AS M_AG02,  SUM(M_AG03) AS M_AG03,  SUM(M_AG04) AS M_AG04, 
 SUM(M_AG05) AS M_AG05, SUM(M_AG06) AS M_AG06,  SUM(M_AG07) AS M_AG07,  SUM(M_AG08) AS M_AG08, 
 SUM(M_AG09) AS M_AG09, SUM(M_AG10) AS M_AG10,  SUM(M_AG11) AS M_AG11,  SUM(M_AG12) AS M_AG12, 
 SUM(M_AG13) AS M_AG13, SUM(M_AG14) AS M_AG14,  SUM(M_AG15) AS M_AG15,  SUM(M_AG16) AS M_AG16, 
 SUM(M_AG17) AS M_AG17, SUM(M_AG18) AS M_AG18, 
 
-/*¿©¼º ¿¬·É ±×·ìº° 5¼¼ ´ÜÀ§*/
+/*ì—¬ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë‹¨ìœ„*/
 SUM(F_AG01) AS F_AG01, SUM(F_AG02) AS F_AG02,  SUM(F_AG03) AS F_AG03,  SUM(F_AG04) AS F_AG04, 
 SUM(F_AG05) AS F_AG05, SUM(F_AG06) AS F_AG06,  SUM(F_AG07) AS F_AG07,  SUM(F_AG08) AS F_AG08, 
 SUM(F_AG09) AS F_AG09, SUM(F_AG10) AS F_AG10,  SUM(F_AG11) AS F_AG11,  SUM(F_AG12) AS F_AG12, 
 SUM(F_AG13) AS F_AG13, SUM(F_AG14) AS F_AG14,  SUM(F_AG15) AS F_AG15,  SUM(F_AG16) AS F_AG16, 
 SUM(F_AG17) AS F_AG17, SUM(F_AG18) AS F_AG18, 
 
-/*³²¼º ¿¬·É ±×·ìº° 5¼¼ ¹Ì¸¸, 15-64¼¼, 65¼¼ ÀÌ»ó  */
+/*ë‚¨ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸, 65ì„¸ ì´ìƒ  */
 SUM(M_AG2_01) AS M_AG2_01, SUM(M_AG2_02) AS M_AG2_02,  SUM(M_AG2_03) AS M_AG2_03, 
-/*¿©¼º ¿¬·É ±×·ìº° 5¼¼ ¹Ì¸¸, 15-64¼¼, 65¼¼ ÀÌ»ó  */
+/*ì—¬ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸, 65ì„¸ ì´ìƒ  */
 SUM(F_AG2_01) AS F_AG2_01, SUM(F_AG2_02) AS F_AG2_02,  SUM(F_AG2_03) AS F_AG2_03 FROM
 
 A.DAT GROUP BY KEY ;QUIT;
 
-/*³¯Â¥ÀÚ·á¿Í Ä«¿îÆ® ÀÚ·á ¿¬°è */
+/*ë‚ ì§œìžë£Œì™€ ì¹´ìš´íŠ¸ ìžë£Œ ì—°ê³„ */
 PROC SQL; CREATE TABLE A.TOT_final as select * from a.sidodate as a left join a.tot as b on a.key=b.key; quit;
 
-/*ÃÖÁ¾ ÀÚ·á Á¤¸®*/
+/*ìµœì¢… ìžë£Œ ì •ë¦¬*/
 DATA A.&DISEASE._Dailycount; 
 
-/*º¯¼ö¸í ¼ø¼­ Á¤¸® */
+/*ë³€ìˆ˜ëª… ìˆœì„œ ì •ë¦¬ */
 RETAIN DATE YEAR MONTH DAY  SIDO SIDO_KR &DISEASE. &DISEASE._M &DISEASE._F &DISEASE._AG01-&DISEASE._AG18 &DISEASE._AG2_01-&DISEASE._AG2_03 
 &DISEASE._M_AG01-&DISEASE._M_AG18 &DISEASE._F_AG01-&DISEASE._F_AG18 &DISEASE._M_AG2_01-&DISEASE._M_AG2_03 &DISEASE._F_AG2_01-&DISEASE._F_AG2_03;
 
@@ -364,7 +364,7 @@ LENGTH YEAR $4. MONTH $2. DAY $2. SIDO $2.;
 
 SET A.TOT_FINAL;
 
-/*·¹ÀÌºí¸í ¸ÅÅ©·Î¸í¿¡ ¸ÂÃç¼­ º¯°æ */
+/*ë ˆì´ë¸”ëª… ë§¤í¬ë¡œëª…ì— ë§žì¶°ì„œ ë³€ê²½ */
 RENAME TOT=&DISEASE. MALE=&DISEASE._M FEMALE=&DISEASE._F 
 
 AG01-AG18=&DISEASE._AG01-&DISEASE._AG18
@@ -378,7 +378,7 @@ M_AG2_01-M_AG2_03=&DISEASE._M_AG2_01-&DISEASE._M_AG2_03
 F_AG2_01-F_AG2_03  =&DISEASE._F_AG2_01-&DISEASE._F_AG2_03
 ;
 
-/*³¯Â¥¶û ½Ãµµ º¯¼ö »ý¼º */
+/*ë‚ ì§œëž‘ ì‹œë„ ë³€ìˆ˜ ìƒì„± */
 DATE=CAT(SUBSTR(KEY,1,4),"-",SUBSTR(KEY,5,2),"-",SUBSTR(KEY,7,2));
 YEAR=SUBSTR(DATE,1,4);
 MONTH=SUBSTR(DATE,6,2);
@@ -386,7 +386,7 @@ DAY=SUBSTR(DATE,9,2);
 
 SIDO=SUBSTR(KEY,10,2);
 
-/* MISSINGÀÎ³¯µéÀº 0À¸·Î ¸Þ²ãÁÖ±â */
+/* MISSINGì¸ë‚ ë“¤ì€ 0ìœ¼ë¡œ ë©”ê¿”ì£¼ê¸° */
 IF TOT       ="." THEN TOT       =0; IF MALE     ="." THEN MALE     =0; IF FEMALE  ="." THEN FEMALE =0;
 
 IF AG01      ="." THEN AG01     =0; IF AG02     ="." THEN AG02      =0; IF AG03     ="." THEN AG03      =0;
@@ -417,12 +417,12 @@ IF F_AG2_01 ="." THEN F_AG2_01=0;   IF F_AG2_02 ="." THEN F_AG2_02=0;   IF F_AG2
 DROP KEY;
 RUN;
 
-/*ÀÚ·á Á¤·Ä*/
+/*ìžë£Œ ì •ë ¬*/
 PROC SORT DATA=A.&DISEASE._Dailycount; BY SIDO DATE ; RUN;
 
-/*Ä«Å×°í¸®º°·Î Áý°è (ÀüÃ¼, ¼ºº°, ¿¬·É, ½Ãµµº°)*/
+/*ì¹´í…Œê³ ë¦¬ë³„ë¡œ ì§‘ê³„ (ì „ì²´, ì„±ë³„, ì—°ë ¹, ì‹œë„ë³„)*/
 PROC SQL; 
-/*¿¬µµº° */
+/*ì—°ë„ë³„ */
 CREATE TABLE A.Z AS SELECT YEAR, 
 SUM(&DISEASE.) AS TOT,  SUM(&DISEASE._M) AS MALE, SUM(&DISEASE._F) AS FEMALE,
 SUM(&DISEASE._AG01) AS AG01, SUM(&DISEASE._AG02) AS AG02,
@@ -439,20 +439,20 @@ FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR; QUIT;
 Options firstobs=1 obs=max;
 PROC TRANSPOSE DATA=A.Z PREFIX=Y_ OUT=A.Z_T;
 ID YEAR; RUN;
-/*label º¯°æ*/
+/*label ë³€ê²½*/
 data a.z_t; set a.z_t; rename _name_=category; run;
 
-/*Å×ÀÌºí ºÐÇÒ */
-DATA A.Z_T1; OPTIONS FIRSTOBS=1 OBS=1 ; SET A.Z_T; RUN; /*ÀüÃ¼*/
-DATA A.Z_T2; OPTIONS FIRSTOBS=2 OBS=3 ; SET A.Z_T; RUN; /*¼ºº°*/
-DATA A.Z_T3; OPTIONS FIRSTOBS=4 OBS=21; SET A.Z_T; RUN; /*¿¬·É ±×·ìº°*/
+/*í…Œì´ë¸” ë¶„í•  */
+DATA A.Z_T1; OPTIONS FIRSTOBS=1 OBS=1 ; SET A.Z_T; RUN; /*ì „ì²´*/
+DATA A.Z_T2; OPTIONS FIRSTOBS=2 OBS=3 ; SET A.Z_T; RUN; /*ì„±ë³„*/
+DATA A.Z_T3; OPTIONS FIRSTOBS=4 OBS=21; SET A.Z_T; RUN; /*ì—°ë ¹ ê·¸ë£¹ë³„*/
 
 Options firstobs=1 obs=max;
 
-/*¿¬µµº° ½Ãµµ ÇÕ°è */
+/*ì—°ë„ë³„ ì‹œë„ í•©ê³„ */
 PROC SQL;  CREATE TABLE A.Z2 AS SELECT YEAR, SIDO, SUM(&DISEASE.) AS TOT FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR, SIDO; QUIT;
 
-/*Å×ÀÌºí ÀüÄ¡, ÀüÄ¡ Àü Á¤·Ä */
+/*í…Œì´ë¸” ì „ì¹˜, ì „ì¹˜ ì „ ì •ë ¬ */
 PROC SORT DATA=A.Z2; BY SIDO;
 PROC TRANSPOSE DATA=A.Z2 PREFIX=Y_ OUT=A.Z_T4;
 BY SIDO; ID YEAR; 
@@ -463,10 +463,10 @@ rename sido=category;
 drop _name_; 
 run;
 
-/*¿¬µµº° ¿ùº° ÇÕ°è */
+/*ì—°ë„ë³„ ì›”ë³„ í•©ê³„ */
 PROC SQL;  CREATE TABLE A.Z3 AS SELECT YEAR, month, SUM(&DISEASE.) AS TOT FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR, month; QUIT;
 
-/*Å×ÀÌºí ÀüÄ¡, ÀüÄ¡ Àü Á¤·Ä */
+/*í…Œì´ë¸” ì „ì¹˜, ì „ì¹˜ ì „ ì •ë ¬ */
 PROC SORT DATA=A.Z3; BY month;run;
 PROC TRANSPOSE DATA=A.Z3 PREFIX=Y_ OUT=A.Z_T5;
 BY month; ID YEAR; 
@@ -482,56 +482,56 @@ IF CATEGORY='""' THEN CATEGORY="."; run;
 
 %MEND;
 
-/*¸ÅÅ©·Î Àû¿ë */
-/*3´Ü »óº´ */
-%DISEASE_COUNT(circ                   ,"I00","I99",K=3);     /*¼øÈ¯±â°è ÀüÃ¼ (ÀüÃ¼ ½ÉÇ÷°ü) I00-I99*/
-%DISEASE_COUNT(ischHD              ,"I20","I25",K=3);    /*ÇãÇ÷¼º ½ÉÁúÈ¯ I20-I25*/
-%DISEASE_COUNT(angina              ,"I20","I20",K=3);    /*Çù½ÉÁõ I20*/
-%DISEASE_COUNT(MI                     ,"I21","I25",K=3);    /*½É±Ù°æ»ö I21-I25*/
-%DISEASE_COUNT(resp                 ,"J00","J99",K=3);   /*È£Èí±â°è ÀüÃ¼  J00-J99*/
-%DISEASE_COUNT(acuteup            ,"J00","J06",K=3);  /*±Þ¼º »ó±âµµ°¨¿° J00-J06*/
-%DISEASE_COUNT(pneum              ,"J09","J18",K=3);  /*ÀÎÇÃ·ç¿£ÀÚ ¹× Æó·Å J09-J18*/
-%DISEASE_COUNT(acutelow           ,"J20","J22",K=3);  /*±Þ¼º ÇÏºÎÈ£Èí±â°¨¿° J20-J22*/
-%DISEASE_COUNT(copd                 ,"J40","J44",K=3);  /*¸¸¼ºÆó¼â¼ºÆóÁúÈ¯ J40-J44*/
-%DISEASE_COUNT(asthma             ,"J45","J46",K=3);  /*Ãµ½Ä J45-J46*/
-%DISEASE_COUNT(heat                  ,"T67","T67",K=3); /*°í¿Â°ü·ÃÁúÈ¯ T67*/
-%DISEASE_COUNT(voldep               ,"E86","E86",K=3); /*¿ëÀû°í°¥Å»¼ö E86*/
-%DISEASE_COUNT(frost                   ,"T33","T35",K=3); /*µ¿»ó T33-T35*/
-%DISEASE_COUNT(hypothermia      ,"T68","T68",K=3); /*ÀúÃ¼¿ÂÁõ T68*/
-%DISEASE_COUNT(otherredutemp   ,"T69","T69",K=3); /*ºñµ¿°á ¹× ±âÅ¸ (Other effects of reduced temperature) T69*/
-%DISEASE_COUNT(aki                      ,"N17","N17",K=3); /*±Þ¼º ½Å¼Õ»ó N17*/
-%DISEASE_COUNT(kidney                ,"N00","N29",K=3); /*½ÅÀåÁúÈ¯ N00-N29*/
-%DISEASE_COUNT(dm                     ,"E10","E14",K=3); /*´ç´¢ E10-E14*/
-%DISEASE_COUNT(mental                ,"F31","F39",K=3); /*¿ì¿ïÁõ F31-F39*/
-%DISEASE_COUNT(suicide               ,"X60","X84",K=3); /*ÀÚ»ì°ü·Ã, °íÀÇÀû ÀÚÇØ X60-X84*/
-%DISEASE_COUNT(intestinal_infec   ,"A00","A09",K=3); /*Àå°¨¿° A00-A09*/
-%DISEASE_COUNT(cholera              ,"A00","A00",K=3);    /*ÄÝ·¹¶ó A00*/
-%DISEASE_COUNT(typhoid_para      ,"A01","A01",K=3); /*ÀåÆ¼Çª½º ¹× ÆÄ¶óÆ¼Çª½º A01*/
-%DISEASE_COUNT(othersalmone     ,"A02","A02",K=3); /*±âÅ¸ »ì¸ð³Ú¶ó°¨¿° A02*/
-%DISEASE_COUNT(shigellosis          ,"A03","A03",K=3); /*½Ã°Ö¶óÁõ A03*/
-%DISEASE_COUNT(otherbac             ,"A04","A04",K=3); /*±âÅ¸ ¼¼±Õ¼º Àå°¨¿° A04*/
-%DISEASE_COUNT(otherbac_food    ,"A05","A05",K=3); /*´Þ¸® ºÐ·ùµÇÁö ¾ÊÀº ±âÅ¸ ¼¼±Õ¼º À½½Ä ¸Å°³Áßµ¶ A05*/
-%DISEASE_COUNT(amoebiasis        ,"A06","A06",K=3); /*¾Æ¸Þ¹ÙÁõ A06*/
-%DISEASE_COUNT(otherprotozoal    ,"A07","A07",K=3); /*±âÅ¸ ¿øÃæ¼º ÀåÁúÈ¯ A07*/
-%DISEASE_COUNT(viral_intestinal     ,"A08","A08",K=3); /*¹ÙÀÌ·¯½º¼º ¹× ±âÅ¸ ¸í½ÃµÈ Àå°¨¿° A08*/
-%DISEASE_COUNT(othergast_coli     ,"A09","A09",K=3); /*°¨¿°¼º ¹× »ó¼¼ºÒ¸í ±â¿øÀÇ ±âÅ¸ À§Àå¿° ¹× °áÀå¿° A09*/
-%DISEASE_COUNT(zoster                 ,"B02","B02",K=3); /*´ë»óÆ÷Áø B02*/
-%DISEASE_COUNT(vasomotor_allerg,"J30","J30",K=3); /*²É°¡·ç, Ç÷°ü¿îµ¿¼º ¹× ¾Ù·¯Áö¼º ºñ¿° J30*/
+/*ë§¤í¬ë¡œ ì ìš© */
+/*3ë‹¨ ìƒë³‘ */
+%DISEASE_COUNT(circ                   ,"I00","I99",K=3);     /*ìˆœí™˜ê¸°ê³„ ì „ì²´ (ì „ì²´ ì‹¬í˜ˆê´€) I00-I99*/
+%DISEASE_COUNT(ischHD              ,"I20","I25",K=3);    /*í—ˆí˜ˆì„± ì‹¬ì§ˆí™˜ I20-I25*/
+%DISEASE_COUNT(angina              ,"I20","I20",K=3);    /*í˜‘ì‹¬ì¦ I20*/
+%DISEASE_COUNT(MI                     ,"I21","I25",K=3);    /*ì‹¬ê·¼ê²½ìƒ‰ I21-I25*/
+%DISEASE_COUNT(resp                 ,"J00","J99",K=3);   /*í˜¸í¡ê¸°ê³„ ì „ì²´  J00-J99*/
+%DISEASE_COUNT(acuteup            ,"J00","J06",K=3);  /*ê¸‰ì„± ìƒê¸°ë„ê°ì—¼ J00-J06*/
+%DISEASE_COUNT(pneum              ,"J09","J18",K=3);  /*ì¸í”Œë£¨ì—”ìž ë° íë ´ J09-J18*/
+%DISEASE_COUNT(acutelow           ,"J20","J22",K=3);  /*ê¸‰ì„± í•˜ë¶€í˜¸í¡ê¸°ê°ì—¼ J20-J22*/
+%DISEASE_COUNT(copd                 ,"J40","J44",K=3);  /*ë§Œì„±íì‡„ì„±íì§ˆí™˜ J40-J44*/
+%DISEASE_COUNT(asthma             ,"J45","J46",K=3);  /*ì²œì‹ J45-J46*/
+%DISEASE_COUNT(heat                  ,"T67","T67",K=3); /*ê³ ì˜¨ê´€ë ¨ì§ˆí™˜ T67*/
+%DISEASE_COUNT(voldep               ,"E86","E86",K=3); /*ìš©ì ê³ ê°ˆíƒˆìˆ˜ E86*/
+%DISEASE_COUNT(frost                   ,"T33","T35",K=3); /*ë™ìƒ T33-T35*/
+%DISEASE_COUNT(hypothermia      ,"T68","T68",K=3); /*ì €ì²´ì˜¨ì¦ T68*/
+%DISEASE_COUNT(otherredutemp   ,"T69","T69",K=3); /*ë¹„ë™ê²° ë° ê¸°íƒ€ (Other effects of reduced temperature) T69*/
+%DISEASE_COUNT(aki                      ,"N17","N17",K=3); /*ê¸‰ì„± ì‹ ì†ìƒ N17*/
+%DISEASE_COUNT(kidney                ,"N00","N29",K=3); /*ì‹ ìž¥ì§ˆí™˜ N00-N29*/
+%DISEASE_COUNT(dm                     ,"E10","E14",K=3); /*ë‹¹ë‡¨ E10-E14*/
+%DISEASE_COUNT(mental                ,"F31","F39",K=3); /*ìš°ìš¸ì¦ F31-F39*/
+%DISEASE_COUNT(suicide               ,"X60","X84",K=3); /*ìžì‚´ê´€ë ¨, ê³ ì˜ì  ìží•´ X60-X84*/
+%DISEASE_COUNT(intestinal_infec   ,"A00","A09",K=3); /*ìž¥ê°ì—¼ A00-A09*/
+%DISEASE_COUNT(cholera              ,"A00","A00",K=3);    /*ì½œë ˆë¼ A00*/
+%DISEASE_COUNT(typhoid_para      ,"A01","A01",K=3); /*ìž¥í‹°í‘¸ìŠ¤ ë° íŒŒë¼í‹°í‘¸ìŠ¤ A01*/
+%DISEASE_COUNT(othersalmone     ,"A02","A02",K=3); /*ê¸°íƒ€ ì‚´ëª¨ë„¬ë¼ê°ì—¼ A02*/
+%DISEASE_COUNT(shigellosis          ,"A03","A03",K=3); /*ì‹œê²”ë¼ì¦ A03*/
+%DISEASE_COUNT(otherbac             ,"A04","A04",K=3); /*ê¸°íƒ€ ì„¸ê· ì„± ìž¥ê°ì—¼ A04*/
+%DISEASE_COUNT(otherbac_food    ,"A05","A05",K=3); /*ë‹¬ë¦¬ ë¶„ë¥˜ë˜ì§€ ì•Šì€ ê¸°íƒ€ ì„¸ê· ì„± ìŒì‹ ë§¤ê°œì¤‘ë… A05*/
+%DISEASE_COUNT(amoebiasis        ,"A06","A06",K=3); /*ì•„ë©”ë°”ì¦ A06*/
+%DISEASE_COUNT(otherprotozoal    ,"A07","A07",K=3); /*ê¸°íƒ€ ì›ì¶©ì„± ìž¥ì§ˆí™˜ A07*/
+%DISEASE_COUNT(viral_intestinal     ,"A08","A08",K=3); /*ë°”ì´ëŸ¬ìŠ¤ì„± ë° ê¸°íƒ€ ëª…ì‹œëœ ìž¥ê°ì—¼ A08*/
+%DISEASE_COUNT(othergast_coli     ,"A09","A09",K=3); /*ê°ì—¼ì„± ë° ìƒì„¸ë¶ˆëª… ê¸°ì›ì˜ ê¸°íƒ€ ìœ„ìž¥ì—¼ ë° ê²°ìž¥ì—¼ A09*/
+%DISEASE_COUNT(zoster                 ,"B02","B02",K=3); /*ëŒ€ìƒí¬ì§„ B02*/
+%DISEASE_COUNT(vasomotor_allerg,"J30","J30",K=3); /*ê½ƒê°€ë£¨, í˜ˆê´€ìš´ë™ì„± ë° ì•¨ëŸ¬ì§€ì„± ë¹„ì—¼ J30*/
 
-/*4´Ü »óº´ */
-%DISEASE_COUNT(TIA                  ,"G458","G458",K=4); /*ÀÏ°ú¼º ÇãÇ÷¼º ³úÁ¹Áß G458-G459*/
-%DISEASE_COUNT(tsutsugamushi,"A753","A753",K=4); /*°¨¿°º´ ÂêÂê°¡¹«½Ã  A753*/
+/*4ë‹¨ ìƒë³‘ */
+%DISEASE_COUNT(TIA                  ,"G458","G458",K=4); /*ì¼ê³¼ì„± í—ˆí˜ˆì„± ë‡Œì¡¸ì¤‘ G458-G459*/
+%DISEASE_COUNT(tsutsugamushi,"A753","A753",K=4); /*ê°ì—¼ë³‘ ì¯”ì¯”ê°€ë¬´ì‹œ  A753*/
 
 /*****************************************************************************************/
 /*****************************************************************************************/
-/*ÁúÈ¯ÄÚµå°¡ ¿¬¼ÓÀûÀÌÁö ¾Ê°í ¼¯¿© ÀÖ´Â °æ¿ì  */
+/*ì§ˆí™˜ì½”ë“œê°€ ì—°ì†ì ì´ì§€ ì•Šê³  ì„žì—¬ ìžˆëŠ” ê²½ìš°  */
 
-/*³úÇ÷°üÁúÈ¯ ÀüÃ¼ I60-I67, I690-I694,G458-G459 */
+/*ë‡Œí˜ˆê´€ì§ˆí™˜ ì „ì²´ I60-I67, I690-I694,G458-G459 */
 DATA A.cerebvas ;  SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_A01,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 SUBSTR(DIS_A02,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_A02,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
@@ -554,7 +554,7 @@ SUBSTR(DIS_A18,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBS
 SUBSTR(DIS_A19,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_A19,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 SUBSTR(DIS_A20,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_A20,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_E_A01,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 SUBSTR(DIS_E_A02,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_E_A02,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 SUBSTR(DIS_E_A03,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_E_A03,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
@@ -576,18 +576,18 @@ SUBSTR(DIS_E_A18,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SU
 SUBSTR(DIS_E_A19,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_E_A19,1,4) IN ("I690","I691","I692","I693","I694","G458","G459") OR
 SUBSTR(DIS_E_A20,1,3) IN ("I60","I61","I62","I63","I64","I65","I66","I67") OR SUBSTR(DIS_E_A20,1,4) IN ("I690","I691","I692","I693","I694","G458","G459")  ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
 
-/*ÃâÇ÷¼º ³úÁ¹Áß I60-I62, I690-I692*/
+/*ì¶œí˜ˆì„± ë‡Œì¡¸ì¤‘ I60-I62, I690-I692*/
 DATA A.hemoStroke ;   SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_A01,1,4) IN ("I690","I691","I692") OR
 SUBSTR(DIS_A02,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_A02,1,4) IN ("I690","I691","I692") OR
@@ -610,7 +610,7 @@ SUBSTR(DIS_A18,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_A18,1,4) IN ("I690","I6
 SUBSTR(DIS_A19,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_A19,1,4) IN ("I690","I691","I692") OR
 SUBSTR(DIS_A20,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_A20,1,4) IN ("I690","I691","I692") OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A01,1,4) IN ("I690","I691","I692") OR
 SUBSTR(DIS_E_A02,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A02,1,4) IN ("I690","I691","I692") OR
 SUBSTR(DIS_E_A03,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A03,1,4) IN ("I690","I691","I692") OR
@@ -632,18 +632,18 @@ SUBSTR(DIS_E_A18,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A18,1,4) IN ("I690"
 SUBSTR(DIS_E_A19,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A19,1,4) IN ("I690","I691","I692") OR
 SUBSTR(DIS_E_A20,1,3) IN ("I60","I61","I62") OR SUBSTR(DIS_E_A20,1,4) IN ("I690","I691","I692")  ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
 
-/*ÇãÇ÷¼º ³úÁ¹Áß I63, I65-I67, I693*/
+/*í—ˆí˜ˆì„± ë‡Œì¡¸ì¤‘ I63, I65-I67, I693*/
 DATA A.ischStroke ;   SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_A01,1,4) IN ("I693") OR
 SUBSTR(DIS_A02,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_A02,1,4) IN ("I693") OR
@@ -666,7 +666,7 @@ SUBSTR(DIS_A18,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_A18,1,4) IN ("I69
 SUBSTR(DIS_A19,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_A19,1,4) IN ("I693") OR
 SUBSTR(DIS_A20,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_A20,1,4) IN ("I693") OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A01,1,4) IN ("I693") OR
 SUBSTR(DIS_E_A02,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A02,1,4) IN ("I693") OR
 SUBSTR(DIS_E_A03,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A03,1,4) IN ("I693") OR
@@ -688,17 +688,17 @@ SUBSTR(DIS_E_A18,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A18,1,4) IN (
 SUBSTR(DIS_E_A19,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A19,1,4) IN ("I693") OR
 SUBSTR(DIS_E_A20,1,3) IN ("I63","I65","I66","I67") OR SUBSTR(DIS_E_A20,1,4) IN ("I693")  ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
-/*±âÅ¸ ³úÁ¹Áß I64, I694*/
+/*ê¸°íƒ€ ë‡Œì¡¸ì¤‘ I64, I694*/
 DATA A.otherStroke ;   SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("I64") OR SUBSTR(DIS_A01,1,4) IN ("I694") OR
 SUBSTR(DIS_A02,1,3) IN ("I64") OR SUBSTR(DIS_A02,1,4) IN ("I694") OR
@@ -721,7 +721,7 @@ SUBSTR(DIS_A18,1,3) IN ("I64") OR SUBSTR(DIS_A18,1,4) IN ("I694") OR
 SUBSTR(DIS_A19,1,3) IN ("I64") OR SUBSTR(DIS_A19,1,4) IN ("I694") OR
 SUBSTR(DIS_A20,1,3) IN ("I64") OR SUBSTR(DIS_A20,1,4) IN ("I694") OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("I64") OR SUBSTR(DIS_E_A01,1,4) IN ("I694") OR
 SUBSTR(DIS_E_A02,1,3) IN ("I64") OR SUBSTR(DIS_E_A02,1,4) IN ("I694") OR
 SUBSTR(DIS_E_A03,1,3) IN ("I64") OR SUBSTR(DIS_E_A03,1,4) IN ("I694") OR
@@ -743,17 +743,17 @@ SUBSTR(DIS_E_A18,1,3) IN ("I64") OR SUBSTR(DIS_E_A18,1,4) IN ("I694") OR
 SUBSTR(DIS_E_A19,1,3) IN ("I64") OR SUBSTR(DIS_E_A19,1,4) IN ("I694") OR
 SUBSTR(DIS_E_A20,1,3) IN ("I64") OR SUBSTR(DIS_E_A20,1,4) IN ("I694")  ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
-/*¿Â¿­ÁúÈ¯ °ü·Ã E86,T67*/
+/*ì˜¨ì—´ì§ˆí™˜ ê´€ë ¨ E86,T67*/
 DATA A.heatrelated ;    SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("E86","T67") OR 
 SUBSTR(DIS_A02,1,3) IN ("E86","T67") OR 
@@ -776,7 +776,7 @@ SUBSTR(DIS_A18,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_A19,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_A20,1,3) IN ("E86","T67") OR
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_E_A02,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_E_A03,1,3) IN ("E86","T67") OR
@@ -798,17 +798,17 @@ SUBSTR(DIS_E_A18,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_E_A19,1,3) IN ("E86","T67") OR
 SUBSTR(DIS_E_A20,1,3) IN ("E86","T67");
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
 
-/*ÇÑ·©ÁúÈ¯ °ü·Ã T33-T35,T68,T69*/
+/*í•œëž­ì§ˆí™˜ ê´€ë ¨ T33-T35,T68,T69*/
 DATA A.frostrelated ;   SET A.NEDIS_R2;
 FORMAT E_DDATE YYMMDD10. ;
 
-/*ÇØ´ç ÁúÈ¯ ICD ÄÚµå ÃßÃâ */
-/*Åð½Ç Áø´Ü ÄÚµå */
+/*í•´ë‹¹ ì§ˆí™˜ ICD ì½”ë“œ ì¶”ì¶œ */
+/*í‡´ì‹¤ ì§„ë‹¨ ì½”ë“œ */
 IF 
 SUBSTR(DIS_A01,1,3) IN ("T33","T34","T35","T68","T69") OR 
 SUBSTR(DIS_A02,1,3) IN ("T33","T34","T35","T68","T69") OR
@@ -831,7 +831,7 @@ SUBSTR(DIS_A18,1,3) IN ("T33","T34","T35","T68","T69") OR
 SUBSTR(DIS_A19,1,3) IN ("T33","T34","T35","T68","T69") OR 
 SUBSTR(DIS_A20,1,3) IN ("T33","T34","T35","T68","T69") OR 
 
-/*Åð¿ø Áø´Ü ÄÚµå */
+/*í‡´ì› ì§„ë‹¨ ì½”ë“œ */
 SUBSTR(DIS_E_A01,1,3) IN ("T33","T34","T35","T68","T69") OR
 SUBSTR(DIS_E_A02,1,3) IN ("T33","T34","T35","T68","T69") OR 
 SUBSTR(DIS_E_A03,1,3) IN ("T33","T34","T35","T68","T69") OR 
@@ -853,7 +853,7 @@ SUBSTR(DIS_E_A18,1,3) IN ("T33","T34","T35","T68","T69") OR
 SUBSTR(DIS_E_A19,1,3) IN ("T33","T34","T35","T68","T69") OR 
 SUBSTR(DIS_E_A20,1,3) IN ("T33","T34","T35","T68","T69")  ;
 
-/*ÀÀ±Þ½Ç ³»¿øÀÏÀÚ ³¯Â¥ »ý¼º  */
+/*ì‘ê¸‰ì‹¤ ë‚´ì›ì¼ìž ë‚ ì§œ ìƒì„±  */
 E_DDATE =MDY(E_MON,E_DAY,E_YR);
 DROP HOSPT DIS_B01-DIS_B20 DIS_E_B01-DIS_E_B20 SGG_TF ;
 RUN;
@@ -862,20 +862,20 @@ RUN;
 
 %MACRO DISEASE_COUNT2(DISEASE);
 
-/*º¯¼ö Ä«¿îÆ® ¸ñÀûÀ¸·Î ÀçÁ¤¸® */
+/*ë³€ìˆ˜ ì¹´ìš´íŠ¸ ëª©ì ìœ¼ë¡œ ìž¬ì •ë¦¬ */
 DATA A.DAT ;SET A.&DISEASE.;
 
-/*ÀüÃ¼ */
+/*ì „ì²´ */
 TOT=1; 
 
-/*¼ºº°*/
+/*ì„±ë³„*/
 IF SEX="M" THEN MALE=1; ELSE MALE=0;
 IF SEX="F" THEN FEMALE=1; ELSE FEMALE=0;
 
-/*¿¬·É ¹Ì»ó Á¦¿Ü */
+/*ì—°ë ¹ ë¯¸ìƒ ì œì™¸ */
 IF AGE_GROUP ^=""; 
 
-/*¿¬·É ±×·ìº°, 5¼¼ ´ÜÀ§ */
+/*ì—°ë ¹ ê·¸ë£¹ë³„, 5ì„¸ ë‹¨ìœ„ */
 IF AG=1   THEN AG01=1; ELSE AG01=0;
 IF AG=2   THEN AG02=1; ELSE AG02=0;
 IF AG=3   THEN AG03=1; ELSE AG03=0;
@@ -895,109 +895,109 @@ IF AG=16 THEN AG16=1; ELSE AG16=0;
 IF AG=17 THEN AG17=1; ELSE AG17=0;
 IF AG=18 THEN AG18=1; ELSE AG18=0;
 
-/*¿¬·É ±×·ì 5¼¼, 15-64, 65¼¼ ÀÌ»ó*/
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸, 15-64, 65ì„¸ ì´ìƒ*/
 IF AG2=1 THEN AG2_01=1; ELSE AG2_01=0;
 IF AG2=2 THEN AG2_02=1; ELSE AG2_02=0;
 IF AG2=3 THEN AG2_03=1; ELSE AG2_03=0;
 
-/*¼º ¿¬·É Á¶ÇÕ 1*/
-IF SEX="M" & AG=1   THEN M_AG01=1; ELSE M_AG01=0; /*0-4¼¼ & ³²¼º */
-IF SEX="M" & AG=2   THEN M_AG02=1; ELSE M_AG02=0; /*5-9¼¼ & ³²¼º */
-IF SEX="M" & AG=3   THEN M_AG03=1; ELSE M_AG03=0; /*10-14¼¼ & ³²¼º */
-IF SEX="M" & AG=4   THEN M_AG04=1; ELSE M_AG04=0; /*15-19¼¼ & ³²¼º */
-IF SEX="M" & AG=5   THEN M_AG05=1; ELSE M_AG05=0; /*20-24¼¼ & ³²¼º */
-IF SEX="M" & AG=6   THEN M_AG06=1; ELSE M_AG06=0; /*25-29¼¼ & ³²¼º */
-IF SEX="M" & AG=7   THEN M_AG07=1; ELSE M_AG07=0; /*30-34¼¼ & ³²¼º */
-IF SEX="M" & AG=8   THEN M_AG08=1; ELSE M_AG08=0; /*35-39¼¼ & ³²¼º */
-IF SEX="M" & AG=9   THEN M_AG09=1; ELSE M_AG09=0; /*40-44¼¼ & ³²¼º */
-IF SEX="M" & AG=10 THEN M_AG10=1; ELSE M_AG10=0; /*45-49¼¼ & ³²¼º */
-IF SEX="M" & AG=11 THEN M_AG11=1; ELSE M_AG11=0; /*50-54¼¼ & ³²¼º */
-IF SEX="M" & AG=12 THEN M_AG12=1; ELSE M_AG12=0; /*55-59¼¼ & ³²¼º */
-IF SEX="M" & AG=13 THEN M_AG13=1; ELSE M_AG13=0; /*60-64¼¼ & ³²¼º */
-IF SEX="M" & AG=14 THEN M_AG14=1; ELSE M_AG14=0; /*65-69¼¼ & ³²¼º */
-IF SEX="M" & AG=15 THEN M_AG15=1; ELSE M_AG15=0; /*70-74¼¼ & ³²¼º */
-IF SEX="M" & AG=16 THEN M_AG16=1; ELSE M_AG16=0; /*75-79¼¼ & ³²¼º */
-IF SEX="M" & AG=17 THEN M_AG17=1; ELSE M_AG17=0; /*80-84¼¼ & ³²¼º */ 
-IF SEX="M" & AG=18 THEN M_AG18=1; ELSE M_AG18=0; /*85¼¼ ÀÌ»ó & ³²¼º */
+/*ì„± ì—°ë ¹ ì¡°í•© 1*/
+IF SEX="M" & AG=1   THEN M_AG01=1; ELSE M_AG01=0; /*0-4ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=2   THEN M_AG02=1; ELSE M_AG02=0; /*5-9ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=3   THEN M_AG03=1; ELSE M_AG03=0; /*10-14ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=4   THEN M_AG04=1; ELSE M_AG04=0; /*15-19ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=5   THEN M_AG05=1; ELSE M_AG05=0; /*20-24ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=6   THEN M_AG06=1; ELSE M_AG06=0; /*25-29ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=7   THEN M_AG07=1; ELSE M_AG07=0; /*30-34ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=8   THEN M_AG08=1; ELSE M_AG08=0; /*35-39ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=9   THEN M_AG09=1; ELSE M_AG09=0; /*40-44ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=10 THEN M_AG10=1; ELSE M_AG10=0; /*45-49ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=11 THEN M_AG11=1; ELSE M_AG11=0; /*50-54ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=12 THEN M_AG12=1; ELSE M_AG12=0; /*55-59ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=13 THEN M_AG13=1; ELSE M_AG13=0; /*60-64ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=14 THEN M_AG14=1; ELSE M_AG14=0; /*65-69ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=15 THEN M_AG15=1; ELSE M_AG15=0; /*70-74ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=16 THEN M_AG16=1; ELSE M_AG16=0; /*75-79ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG=17 THEN M_AG17=1; ELSE M_AG17=0; /*80-84ì„¸ & ë‚¨ì„± */ 
+IF SEX="M" & AG=18 THEN M_AG18=1; ELSE M_AG18=0; /*85ì„¸ ì´ìƒ & ë‚¨ì„± */
 
-IF SEX="F" & AG=1   THEN F_AG01=1; ELSE F_AG01=0; /*0-4¼¼ & ¿©¼º */
-IF SEX="F" & AG=2   THEN F_AG02=1; ELSE F_AG02=0; /*5-9¼¼ & ¿©¼º */
-IF SEX="F" & AG=3   THEN F_AG03=1; ELSE F_AG03=0; /*10-14¼¼ & ¿©¼º */
-IF SEX="F" & AG=4   THEN F_AG04=1; ELSE F_AG04=0; /*15-19¼¼ & ¿©¼º */
-IF SEX="F" & AG=5   THEN F_AG05=1; ELSE F_AG05=0; /*20-24¼¼ & ¿©¼º */
-IF SEX="F" & AG=6   THEN F_AG06=1; ELSE F_AG06=0; /*25-29¼¼ & ¿©¼º */
-IF SEX="F" & AG=7   THEN F_AG07=1; ELSE F_AG07=0; /*30-34¼¼ & ¿©¼º */
-IF SEX="F" & AG=8   THEN F_AG08=1; ELSE F_AG08=0; /*35-39¼¼ & ¿©¼º */
-IF SEX="F" & AG=9   THEN F_AG09=1; ELSE F_AG09=0; /*40-44¼¼ & ¿©¼º */
-IF SEX="F" & AG=10 THEN F_AG10=1; ELSE F_AG10=0; /*45-49¼¼ & ¿©¼º */
-IF SEX="F" & AG=11 THEN F_AG11=1; ELSE F_AG11=0; /*50-54¼¼ & ¿©¼º */
-IF SEX="F" & AG=12 THEN F_AG12=1; ELSE F_AG12=0; /*55-59¼¼ & ¿©¼º */
-IF SEX="F" & AG=13 THEN F_AG13=1; ELSE F_AG13=0; /*60-64¼¼ & ¿©¼º */
-IF SEX="F" & AG=14 THEN F_AG14=1; ELSE F_AG14=0; /*65-69¼¼ & ¿©¼º */
-IF SEX="F" & AG=15 THEN F_AG15=1; ELSE F_AG15=0; /*70-74¼¼ & ¿©¼º */
-IF SEX="F" & AG=16 THEN F_AG16=1; ELSE F_AG16=0; /*75-79¼¼ & ¿©¼º */
-IF SEX="F" & AG=17 THEN F_AG17=1; ELSE F_AG17=0; /*80-84¼¼ & ¿©¼º */ 
-IF SEX="F" & AG=18 THEN F_AG18=1; ELSE F_AG18=0; /*85¼¼ ÀÌ»ó & ¿©¼º */
+IF SEX="F" & AG=1   THEN F_AG01=1; ELSE F_AG01=0; /*0-4ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=2   THEN F_AG02=1; ELSE F_AG02=0; /*5-9ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=3   THEN F_AG03=1; ELSE F_AG03=0; /*10-14ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=4   THEN F_AG04=1; ELSE F_AG04=0; /*15-19ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=5   THEN F_AG05=1; ELSE F_AG05=0; /*20-24ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=6   THEN F_AG06=1; ELSE F_AG06=0; /*25-29ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=7   THEN F_AG07=1; ELSE F_AG07=0; /*30-34ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=8   THEN F_AG08=1; ELSE F_AG08=0; /*35-39ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=9   THEN F_AG09=1; ELSE F_AG09=0; /*40-44ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=10 THEN F_AG10=1; ELSE F_AG10=0; /*45-49ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=11 THEN F_AG11=1; ELSE F_AG11=0; /*50-54ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=12 THEN F_AG12=1; ELSE F_AG12=0; /*55-59ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=13 THEN F_AG13=1; ELSE F_AG13=0; /*60-64ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=14 THEN F_AG14=1; ELSE F_AG14=0; /*65-69ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=15 THEN F_AG15=1; ELSE F_AG15=0; /*70-74ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=16 THEN F_AG16=1; ELSE F_AG16=0; /*75-79ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG=17 THEN F_AG17=1; ELSE F_AG17=0; /*80-84ì„¸ & ì—¬ì„± */ 
+IF SEX="F" & AG=18 THEN F_AG18=1; ELSE F_AG18=0; /*85ì„¸ ì´ìƒ & ì—¬ì„± */
 
-/*¼º ¿¬·É Á¶ÇÕ 2*/
-IF SEX="M" & AG2=1   THEN M_AG2_01=1; ELSE M_AG2_01=0; /*0-4¼¼ & ³²¼º */
-IF SEX="M" & AG2=2   THEN M_AG2_02=1; ELSE M_AG2_02=0; /*15-64¼¼ & ³²¼º */
-IF SEX="M" & AG2=3   THEN M_AG2_03=1; ELSE M_AG2_03=0; /*65¼¼ÀÌ»ó & ³²¼º */
+/*ì„± ì—°ë ¹ ì¡°í•© 2*/
+IF SEX="M" & AG2=1   THEN M_AG2_01=1; ELSE M_AG2_01=0; /*0-4ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG2=2   THEN M_AG2_02=1; ELSE M_AG2_02=0; /*15-64ì„¸ & ë‚¨ì„± */
+IF SEX="M" & AG2=3   THEN M_AG2_03=1; ELSE M_AG2_03=0; /*65ì„¸ì´ìƒ & ë‚¨ì„± */
 
-IF SEX="F" & AG2=1   THEN F_AG2_01=1; ELSE F_AG2_01=0; /*0-4¼¼ & ¿©¼º */
-IF SEX="F" & AG2=2   THEN F_AG2_02=1; ELSE F_AG2_02=0; /*15-64¼¼ & ¿©¼º */
-IF SEX="F" & AG2=3   THEN F_AG2_03=1; ELSE F_AG2_03=0; /*65¼¼ÀÌ»ó & ¿©¼º */
+IF SEX="F" & AG2=1   THEN F_AG2_01=1; ELSE F_AG2_01=0; /*0-4ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG2=2   THEN F_AG2_02=1; ELSE F_AG2_02=0; /*15-64ì„¸ & ì—¬ì„± */
+IF SEX="F" & AG2=3   THEN F_AG2_03=1; ELSE F_AG2_03=0; /*65ì„¸ì´ìƒ & ì—¬ì„± */
 
-/*³¯Â¥º°+½Ãµµ key */
+/*ë‚ ì§œë³„+ì‹œë„ key */
 KEY=COMPRESS(E_DATE)||("-")||COMPRESS(SIDO_R); 
 RUN;
 
-/*°³º° Ç×¸ñº°·Î µ¥ÀÏ¸® Ä«¿îÆ® »êÃâ */
+/*ê°œë³„ í•­ëª©ë³„ë¡œ ë°ì¼ë¦¬ ì¹´ìš´íŠ¸ ì‚°ì¶œ */
 PROC SQL;CREATE TABLE A.TOT AS SELECT KEY, 
-/*ÀüÃ¼*/
+/*ì „ì²´*/
 SUM(TOT) AS TOT, 
 
-/*¼ºº°*/
+/*ì„±ë³„*/
 SUM(MALE) AS MALE, SUM(FEMALE) AS FEMALE,
 
-/*¿¬·É ±×·ì 5¼¼º° */
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸ë³„ */
 SUM(AG01) AS AG01, SUM(AG02) AS AG02,  SUM(AG03) AS AG03,  SUM(AG04) AS AG04, 
 SUM(AG05) AS AG05, SUM(AG06) AS AG06,  SUM(AG07) AS AG07,  SUM(AG08) AS AG08, 
 SUM(AG09) AS AG09, SUM(AG10) AS AG10,  SUM(AG11) AS AG11,  SUM(AG12) AS AG12, 
 SUM(AG13) AS AG13, SUM(AG14) AS AG14,  SUM(AG15) AS AG15,  SUM(AG16) AS AG16, 
 SUM(AG17) AS AG17, SUM(AG18) AS AG18, 
 
-/*¿¬·É ±×·ì 5¼¼ ¹Ì¸¸, 15-64¼¼ 65¼¼ ÀÌ»ó*/
+/*ì—°ë ¹ ê·¸ë£¹ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸ 65ì„¸ ì´ìƒ*/
 SUM(AG2_01) AS AG2_01, SUM(AG2_02) AS AG2_02,  SUM(AG2_03) AS AG2_03, 
 
-/*³²¼º ¿¬·É ±×·ìº° 5¼¼´ÜÀ§ */
+/*ë‚¨ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ë‹¨ìœ„ */
 SUM(M_AG01) AS M_AG01, SUM(M_AG02) AS M_AG02,  SUM(M_AG03) AS M_AG03,  SUM(M_AG04) AS M_AG04, 
 SUM(M_AG05) AS M_AG05, SUM(M_AG06) AS M_AG06,  SUM(M_AG07) AS M_AG07,  SUM(M_AG08) AS M_AG08, 
 SUM(M_AG09) AS M_AG09, SUM(M_AG10) AS M_AG10,  SUM(M_AG11) AS M_AG11,  SUM(M_AG12) AS M_AG12, 
 SUM(M_AG13) AS M_AG13, SUM(M_AG14) AS M_AG14,  SUM(M_AG15) AS M_AG15,  SUM(M_AG16) AS M_AG16, 
 SUM(M_AG17) AS M_AG17, SUM(M_AG18) AS M_AG18, 
 
-/*¿©¼º ¿¬·É ±×·ìº° 5¼¼ ´ÜÀ§*/
+/*ì—¬ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë‹¨ìœ„*/
 SUM(F_AG01) AS F_AG01, SUM(F_AG02) AS F_AG02,  SUM(F_AG03) AS F_AG03,  SUM(F_AG04) AS F_AG04, 
 SUM(F_AG05) AS F_AG05, SUM(F_AG06) AS F_AG06,  SUM(F_AG07) AS F_AG07,  SUM(F_AG08) AS F_AG08, 
 SUM(F_AG09) AS F_AG09, SUM(F_AG10) AS F_AG10,  SUM(F_AG11) AS F_AG11,  SUM(F_AG12) AS F_AG12, 
 SUM(F_AG13) AS F_AG13, SUM(F_AG14) AS F_AG14,  SUM(F_AG15) AS F_AG15,  SUM(F_AG16) AS F_AG16, 
 SUM(F_AG17) AS F_AG17, SUM(F_AG18) AS F_AG18, 
 
-/*³²¼º ¿¬·É ±×·ìº° 5¼¼ ¹Ì¸¸, 15-64¼¼, 65¼¼ ÀÌ»ó  */
+/*ë‚¨ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸, 65ì„¸ ì´ìƒ  */
 SUM(M_AG2_01) AS M_AG2_01, SUM(M_AG2_02) AS M_AG2_02,  SUM(M_AG2_03) AS M_AG2_03, 
-/*¿©¼º ¿¬·É ±×·ìº° 5¼¼ ¹Ì¸¸, 15-64¼¼, 65¼¼ ÀÌ»ó  */
+/*ì—¬ì„± ì—°ë ¹ ê·¸ë£¹ë³„ 5ì„¸ ë¯¸ë§Œ, 15-64ì„¸, 65ì„¸ ì´ìƒ  */
 SUM(F_AG2_01) AS F_AG2_01, SUM(F_AG2_02) AS F_AG2_02,  SUM(F_AG2_03) AS F_AG2_03 FROM
 
 A.DAT GROUP BY KEY ;QUIT;
 
-/*³¯Â¥ÀÚ·á¿Í Ä«¿îÆ® ÀÚ·á ¿¬°è */
+/*ë‚ ì§œìžë£Œì™€ ì¹´ìš´íŠ¸ ìžë£Œ ì—°ê³„ */
 PROC SQL; CREATE TABLE A.TOT_final as select * from a.sidodate as a left join a.tot as b on a.key=b.key; quit;
 
-/*ÃÖÁ¾ ÀÚ·á Á¤¸®*/
+/*ìµœì¢… ìžë£Œ ì •ë¦¬*/
 DATA A.&DISEASE._Dailycount; 
 
-/*º¯¼ö¸í ¼ø¼­ Á¤¸® */
+/*ë³€ìˆ˜ëª… ìˆœì„œ ì •ë¦¬ */
 RETAIN DATE YEAR MONTH DAY  SIDO SIDO_KR &DISEASE. &DISEASE._M &DISEASE._F &DISEASE._AG01-&DISEASE._AG18 &DISEASE._AG2_01-&DISEASE._AG2_03 
 &DISEASE._M_AG01-&DISEASE._M_AG18 &DISEASE._F_AG01-&DISEASE._F_AG18 &DISEASE._M_AG2_01-&DISEASE._M_AG2_03 &DISEASE._F_AG2_01-&DISEASE._F_AG2_03;
 
@@ -1005,7 +1005,7 @@ LENGTH YEAR $4. MONTH $2. DAY $2. SIDO $2.;
 
 SET A.TOT_FINAL;
 
-/*·¹ÀÌºí¸í ¸ÅÅ©·Î¸í¿¡ ¸ÂÃç¼­ º¯°æ */
+/*ë ˆì´ë¸”ëª… ë§¤í¬ë¡œëª…ì— ë§žì¶°ì„œ ë³€ê²½ */
 RENAME TOT=&DISEASE. MALE=&DISEASE._M FEMALE=&DISEASE._F 
 
 AG01-AG18=&DISEASE._AG01-&DISEASE._AG18
@@ -1019,7 +1019,7 @@ M_AG2_01-M_AG2_03=&DISEASE._M_AG2_01-&DISEASE._M_AG2_03
 F_AG2_01-F_AG2_03  =&DISEASE._F_AG2_01-&DISEASE._F_AG2_03
 ;
 
-/*³¯Â¥¶û ½Ãµµ º¯¼ö »ý¼º */
+/*ë‚ ì§œëž‘ ì‹œë„ ë³€ìˆ˜ ìƒì„± */
 DATE=CAT(SUBSTR(KEY,1,4),"-",SUBSTR(KEY,5,2),"-",SUBSTR(KEY,7,2));
 YEAR=SUBSTR(DATE,1,4);
 MONTH=SUBSTR(DATE,6,2);
@@ -1027,7 +1027,7 @@ DAY=SUBSTR(DATE,9,2);
 
 SIDO=SUBSTR(KEY,10,2);
 
-/* MISSINGÀÎ³¯µéÀº 0À¸·Î ¸Þ²ãÁÖ±â */
+/* MISSINGì¸ë‚ ë“¤ì€ 0ìœ¼ë¡œ ë©”ê¿”ì£¼ê¸° */
 IF TOT       ="." THEN TOT       =0; IF MALE     ="." THEN MALE     =0;  IF FEMALE  ="." THEN FEMALE =0;
 
 IF AG01      ="." THEN AG01     =0;   IF AG02       ="." THEN AG02      =0;  IF AG03     ="." THEN AG03      =0;
@@ -1058,12 +1058,12 @@ IF F_AG2_01 ="." THEN F_AG2_01=0; IF F_AG2_02 ="." THEN F_AG2_02=0; IF F_AG2_03 
 DROP KEY;
 RUN;
 
-/*ÀÚ·á Á¤·Ä*/
+/*ìžë£Œ ì •ë ¬*/
 PROC SORT DATA=A.&DISEASE._Dailycount; BY SIDO DATE ; RUN;
 
-/*Ä«Å×°í¸®º°·Î Áý°è (ÀüÃ¼, ¼ºº°, ¿¬·É, ½Ãµµº°)*/
+/*ì¹´í…Œê³ ë¦¬ë³„ë¡œ ì§‘ê³„ (ì „ì²´, ì„±ë³„, ì—°ë ¹, ì‹œë„ë³„)*/
 PROC SQL; 
-/*¿¬µµº° */
+/*ì—°ë„ë³„ */
 CREATE TABLE A.Z AS SELECT YEAR, 
 SUM(&DISEASE.) AS TOT,  SUM(&DISEASE._M) AS MALE, SUM(&DISEASE._F) AS FEMALE,
 SUM(&DISEASE._AG01) AS AG01, SUM(&DISEASE._AG02) AS AG02,
@@ -1080,20 +1080,20 @@ FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR; QUIT;
 Options firstobs=1 obs=max;
 PROC TRANSPOSE DATA=A.Z PREFIX=Y_ OUT=A.Z_T;
 ID YEAR; RUN;
-/*label º¯°æ*/
+/*label ë³€ê²½*/
 data a.z_t; set a.z_t; rename _name_=category; run;
 
-/*Å×ÀÌºí ºÐÇÒ */
-DATA A.Z_T1; OPTIONS FIRSTOBS=1 OBS=1 ; SET A.Z_T; RUN; /*ÀüÃ¼*/
-DATA A.Z_T2; OPTIONS FIRSTOBS=2 OBS=3 ; SET A.Z_T; RUN; /*¼ºº°*/
-DATA A.Z_T3; OPTIONS FIRSTOBS=4 OBS=21; SET A.Z_T; RUN; /*¿¬·É ±×·ìº°*/
+/*í…Œì´ë¸” ë¶„í•  */
+DATA A.Z_T1; OPTIONS FIRSTOBS=1 OBS=1 ; SET A.Z_T; RUN; /*ì „ì²´*/
+DATA A.Z_T2; OPTIONS FIRSTOBS=2 OBS=3 ; SET A.Z_T; RUN; /*ì„±ë³„*/
+DATA A.Z_T3; OPTIONS FIRSTOBS=4 OBS=21; SET A.Z_T; RUN; /*ì—°ë ¹ ê·¸ë£¹ë³„*/
 
 Options firstobs=1 obs=max;
 
-/*¿¬µµº° ½Ãµµ ÇÕ°è */
+/*ì—°ë„ë³„ ì‹œë„ í•©ê³„ */
 PROC SQL;  CREATE TABLE A.Z2 AS SELECT YEAR, SIDO, SUM(&DISEASE.) AS TOT FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR, SIDO; QUIT;
 
-/*Å×ÀÌºí ÀüÄ¡, ÀüÄ¡ Àü Á¤·Ä */
+/*í…Œì´ë¸” ì „ì¹˜, ì „ì¹˜ ì „ ì •ë ¬ */
 PROC SORT DATA=A.Z2; BY SIDO;
 PROC TRANSPOSE DATA=A.Z2 PREFIX=Y_ OUT=A.Z_T4;
 BY SIDO; ID YEAR; 
@@ -1104,10 +1104,10 @@ rename sido=category;
 drop _name_; 
 run;
 
-/*¿¬µµº° ¿ùº° ÇÕ°è */
+/*ì—°ë„ë³„ ì›”ë³„ í•©ê³„ */
 PROC SQL;  CREATE TABLE A.Z3 AS SELECT YEAR, month, SUM(&DISEASE.) AS TOT FROM A.&DISEASE._DAILYCOUNT GROUP BY YEAR, month; QUIT;
 
-/*Å×ÀÌºí ÀüÄ¡, ÀüÄ¡ Àü Á¤·Ä */
+/*í…Œì´ë¸” ì „ì¹˜, ì „ì¹˜ ì „ ì •ë ¬ */
 PROC SORT DATA=A.Z3; BY month;run;
 PROC TRANSPOSE DATA=A.Z3 PREFIX=Y_ OUT=A.Z_T5;
 BY month; ID YEAR; 
@@ -1123,24 +1123,24 @@ IF CATEGORY='""' THEN CATEGORY="."; run;
 
 %MEND;
 
-%DISEASE_COUNT2(cerebvas);         /*³úÇ÷°ü ÁúÈ¯ ÀüÃ¼ I60-I67, I690-I694,G458-G459*/
-%DISEASE_COUNT2(hemoStroke);     /*ÃâÇ÷¼º ³úÁ¹Áß I60-I62, I690-I692 */
-%DISEASE_COUNT2(ischStroke);       /*ÇãÇ÷¼º ³úÁ¹Áß I60-I62, I690-I692*/
-%DISEASE_COUNT2(otherStroke);      /*±âÅ¸ ³úÁ¹Áß I64, I694*/
-%DISEASE_COUNT2(heatrelated);      /*¿Â¿­ÁúÈ¯ E86,T67*/
-%DISEASE_COUNT2(frostrelated);      /*ÇÑ·©ÁúÈ¯ T33-T35,T68,T69*/
+%DISEASE_COUNT2(cerebvas);         /*ë‡Œí˜ˆê´€ ì§ˆí™˜ ì „ì²´ I60-I67, I690-I694,G458-G459*/
+%DISEASE_COUNT2(hemoStroke);     /*ì¶œí˜ˆì„± ë‡Œì¡¸ì¤‘ I60-I62, I690-I692 */
+%DISEASE_COUNT2(ischStroke);       /*í—ˆí˜ˆì„± ë‡Œì¡¸ì¤‘ I60-I62, I690-I692*/
+%DISEASE_COUNT2(otherStroke);      /*ê¸°íƒ€ ë‡Œì¡¸ì¤‘ I64, I694*/
+%DISEASE_COUNT2(heatrelated);      /*ì˜¨ì—´ì§ˆí™˜ E86,T67*/
+%DISEASE_COUNT2(frostrelated);      /*í•œëž­ì§ˆí™˜ T33-T35,T68,T69*/
 
 /*****************************************************************************************/
 /*****************************************************************************************/
-/*µ¥ÀÏ¸® Ä«¿îÆ® ÁúÈ¯º°·Î »êÃâÇÑ °á°ú merge ÇÏ±â */
-/*¾Æ¹«°Å³ª ÁúÈ¯ ÀÚ·á Àâ°í ³¯Â¥¸¸ °¡Á®¿À±â ,key´Â ¿¬°è Å° (³¯Â¥+½Ãµµ)*/
+/*ë°ì¼ë¦¬ ì¹´ìš´íŠ¸ ì§ˆí™˜ë³„ë¡œ ì‚°ì¶œí•œ ê²°ê³¼ merge í•˜ê¸° */
+/*ì•„ë¬´ê±°ë‚˜ ì§ˆí™˜ ìžë£Œ ìž¡ê³  ë‚ ì§œë§Œ ê°€ì ¸ì˜¤ê¸° ,keyëŠ” ì—°ê³„ í‚¤ (ë‚ ì§œ+ì‹œë„)*/
 data daily; set a.circ_dailycount;
 KEY=COMPRESS(DATE)||("-")||COMPRESS(SIDO);
 keep KEY date YEAR month day SIDO SIDO_KR ;
 RUN;
 proc sort data=daily ; by key; run;
 
-/*ÁúÈ¯º°·Î mergeÇÒ key°ª°ú ÁúÈ¯ ÆíÁýÇØ¼­ °¡Á®¿À±â ÀüÃ¼, ³²,¿©, 5¼¼¹Ì¸¸, 15¼¼¹Ì¸¸, 15-64¼¼, 65¼¼ ÀÌ»ó */
+/*ì§ˆí™˜ë³„ë¡œ mergeí•  keyê°’ê³¼ ì§ˆí™˜ íŽ¸ì§‘í•´ì„œ ê°€ì ¸ì˜¤ê¸° ì „ì²´, ë‚¨,ì—¬, 5ì„¸ë¯¸ë§Œ, 15ì„¸ë¯¸ë§Œ, 15-64ì„¸, 65ì„¸ ì´ìƒ */
 %MACRO revise(N,DISEASE);
 DATA D&N.; SET A.&DISEASE._dailycount;
 RENAME &DISEASE.=&DISEASE._tot;
@@ -1197,53 +1197,99 @@ BY KEY;
 RUN;
 proc sort data=dailycount; by sido date ; run;
 
-/*ÀÏº° ÀÚ·á+±â»óÀÚ·á Á¤¸®ÀÚ·á ³»º¸³»±â */
-proc export data=a.dailycount outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\dailycount.csv" dbms=csv replace; run;
+/*ì¼ë³„ ìžë£Œ+ê¸°ìƒìžë£Œ ì •ë¦¬ìžë£Œ ë‚´ë³´ë‚´ê¸° */
+proc export data=a.dailycount outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\dailycount.csv" dbms=csv replace; run;
 
 
 /*****************************************************************************************/
 /*****************************************************************************************/
-/*ºóµµ Å×ÀÌºí ¹ÝÃâ ÇÏ±â */
-PROC EXPORT DATA=A.intestinal_infec_table    outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÀüÃ¼ Àå°¨¿° ÁúÈ¯ "; RUN;
-PROC EXPORT DATA=A.cholera_table             outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÄÝ·¹¶ó" ;RUN;
-PROC EXPORT DATA=A.typhoid_para_table      outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÀåÆ¼Çª½º ¹× ÆÄ¶óÆ¼Çª½º" ;RUN;
-PROC EXPORT DATA=A.othersalmone_table     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="±âÅ¸ »ì¸ð³Ú¶ó°¨¿°" ;RUN;
-PROC EXPORT DATA=A.shigellosis_table         outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"     DBMS=EXCEL REPLACE; SHEET="½Ã°Ö¶óÁõ"; RUN;
-PROC EXPORT DATA=A.otherbac_table           outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"     DBMS=EXCEL REPLACE; SHEET="±âÅ¸ ¼¼±Õ¼º Àå°¨¿°"; RUN;
-PROC EXPORT DATA=A.otherbac_food_table    outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="±âÅ¸ ¼¼±Õ¼º À½½Ä¸Å°³" ;RUN;
-PROC EXPORT DATA=A.amoebiasis_table        outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="¾Æ¸Þ¹ÙÁõ" ;RUN;
-PROC EXPORT DATA=A.Otherprotozoal_table   outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="±âÅ¸ ¿øÃæ¼º ÀåÁúÈ¯"; RUN;
-PROC EXPORT DATA=A.viral_intestinal_table     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="¹ÙÀÌ·¯½º¼º  Àå°¨¿°" ;RUN;
-PROC EXPORT DATA=A.othergast_coli_table     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="»ó¼¼ºÒ¸í_±âÅ¸ À§Àå_°áÀå¿°" ;RUN;
-PROC EXPORT DATA=A.tsutsugamushi_table    outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÂêÂê°¡¹«½Ãº´"; RUN;
-PROC EXPORT DATA=A.zoster_table               outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="´ë»óÆ÷Áø" ;RUN;
-PROC EXPORT DATA=A.circ_table                   outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÀüÃ¼ ½É³úÇ÷°üÁúÈ¯" ;RUN;
-PROC EXPORT DATA=A.angina_table               outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="Çù½ÉÁõ" ;RUN;
-PROC EXPORT DATA=A.ischHD_table               outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÀüÃ¼ ÇãÇ÷¼º ½ÉÁúÈ¯" ;RUN;
-PROC EXPORT DATA=A.MI_table                     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="½É±Ù°æ»ö" ;RUN;
-PROC EXPORT DATA=A.cerebvas_table            outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ÀüÃ¼ ³úÁ¹Áõ" ;RUN;
-PROC EXPORT DATA=A.hemoStroke_table        outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÃâÇ÷¼º ³úÁ¹Áß" ;RUN;
-PROC EXPORT DATA=A.ischStroke_table          outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ÇãÇ÷¼º ³úÁ¹Áß" ;RUN;
-PROC EXPORT DATA=A.otherStroke_table         outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="±âÅ¸ ³úÁ¹Áß"; RUN;
-PROC EXPORT DATA=A.TIA_table                    outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ÀÏ°ú¼º ÇãÇ÷¼º ³úÁ¹Áß" ;RUN;
-PROC EXPORT DATA=A.suicide_table               outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ÀÚ»ì" ;RUN;
-PROC EXPORT DATA=A.mental_table                outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="¿ì¿ïÁõ" ;RUN;
-PROC EXPORT DATA=A.resp_table                   outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ÀüÃ¼ È£Èí±â°èÁúÈ¯" ;RUN;
-PROC EXPORT DATA=A.acuteup_table              outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="±Þ¼º »ó±âµµ °¨¿°" ;RUN;
-PROC EXPORT DATA=A.pneum_table                outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ÀÎÇÃ·ç¿£ÀÚ ¹× Æó·Å"; RUN;
-PROC EXPORT DATA=A.asthma_table               outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="Ãµ½Ä"; RUN;
-PROC EXPORT DATA=A.copd_table                  outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="¸¸¼ºÆó¼â¼ºÆóÁúÈ¯" ;RUN;
-PROC EXPORT DATA=A.voldep_table                outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="¿ëÀû°í°¥ Å»¼ö"; RUN;
-PROC EXPORT DATA=A.frost_table                  outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="µ¿»ó"; RUN;
-PROC EXPORT DATA=A.heat_table                   outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="°í¿Â°ü·Ã ÁúÈ¯(¿­»çº´, ¿­ÇÇ·Î)"; RUN;
-PROC EXPORT DATA=A.hypothermia_table        outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ÀúÃ¼¿ÂÁõ"; RUN;
-PROC EXPORT DATA=A.otherredutemp_table     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ºñµ¿°á ¹× ±âÅ¸" ;RUN;
-PROC EXPORT DATA=A.heatrelated_table          outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="¿Â¿­ÁúÈ¯ °ü·Ã" ;RUN;
-PROC EXPORT DATA=A.frostrelated_table          outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ÇÑ·©ÁúÈ¯ °ü·Ã" ;RUN;
-PROC EXPORT DATA=A.aki_table                     outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="±Þ¼º ½ÅºÎÀüÁõ"; RUN;
-PROC EXPORT DATA=A.kidney_table                outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="½ÅÀåÁúÈ¯" ;RUN;
-PROC EXPORT DATA=A.dm_table                    outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="´ç´¢" ;RUN;
-PROC EXPORT DATA=A.vasomotor_allerg_table outfile="D:\SNU\¿¬±¸\Áúº´°ü¸®º»ºÎ\±âÈÄº¸°Ç¿µÇâÆò°¡_Æò°¡Ã¼°è±¸Ãà¹×½Ã¹ü»ç¾÷\2022\ÀÚ·á\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="Ç÷°ü¿îµ¿¼º ¹× ¾Ù·¯Áö¼º ºñ¿°" ;RUN;
+/*ë¹ˆë„ í…Œì´ë¸” ë°˜ì¶œ í•˜ê¸° */
+PROC EXPORT DATA=A.intestinal_infec_table    outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì „ì²´ ìž¥ê°ì—¼ ì§ˆí™˜ "; RUN;
+PROC EXPORT DATA=A.cholera_table             outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì½œë ˆë¼" ;RUN;
+PROC EXPORT DATA=A.typhoid_para_table      outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ìž¥í‹°í‘¸ìŠ¤ ë° íŒŒë¼í‹°í‘¸ìŠ¤" ;RUN;
+PROC EXPORT DATA=A.othersalmone_table     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ê¸°íƒ€ ì‚´ëª¨ë„¬ë¼ê°ì—¼" ;RUN;
+PROC EXPORT DATA=A.shigellosis_table         outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"     DBMS=EXCEL REPLACE; SHEET="ì‹œê²”ë¼ì¦"; RUN;
+PROC EXPORT DATA=A.otherbac_table           outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"     DBMS=EXCEL REPLACE; SHEET="ê¸°íƒ€ ì„¸ê· ì„± ìž¥ê°ì—¼"; RUN;
+PROC EXPORT DATA=A.otherbac_food_table    outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ê¸°íƒ€ ì„¸ê· ì„± ìŒì‹ë§¤ê°œ" ;RUN;
+PROC EXPORT DATA=A.amoebiasis_table        outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì•„ë©”ë°”ì¦" ;RUN;
+PROC EXPORT DATA=A.Otherprotozoal_table   outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ê¸°íƒ€ ì›ì¶©ì„± ìž¥ì§ˆí™˜"; RUN;
+PROC EXPORT DATA=A.viral_intestinal_table     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ë°”ì´ëŸ¬ìŠ¤ì„±  ìž¥ê°ì—¼" ;RUN;
+PROC EXPORT DATA=A.othergast_coli_table     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ìƒì„¸ë¶ˆëª…_ê¸°íƒ€ ìœ„ìž¥_ê²°ìž¥ì—¼" ;RUN;
+PROC EXPORT DATA=A.tsutsugamushi_table    outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì¯”ì¯”ê°€ë¬´ì‹œë³‘"; RUN;
+PROC EXPORT DATA=A.zoster_table               outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ëŒ€ìƒí¬ì§„" ;RUN;
+PROC EXPORT DATA=A.circ_table                   outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì „ì²´ ì‹¬ë‡Œí˜ˆê´€ì§ˆí™˜" ;RUN;
+PROC EXPORT DATA=A.angina_table               outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="í˜‘ì‹¬ì¦" ;RUN;
+PROC EXPORT DATA=A.ischHD_table               outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì „ì²´ í—ˆí˜ˆì„± ì‹¬ì§ˆí™˜" ;RUN;
+PROC EXPORT DATA=A.MI_table                     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì‹¬ê·¼ê²½ìƒ‰" ;RUN;
+PROC EXPORT DATA=A.cerebvas_table            outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ì „ì²´ ë‡Œì¡¸ì¦" ;RUN;
+PROC EXPORT DATA=A.hemoStroke_table        outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="ì¶œí˜ˆì„± ë‡Œì¡¸ì¤‘" ;RUN;
+PROC EXPORT DATA=A.ischStroke_table          outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"    DBMS=EXCEL REPLACE; SHEET="í—ˆí˜ˆì„± ë‡Œì¡¸ì¤‘" ;RUN;
+PROC EXPORT DATA=A.otherStroke_table         outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ê¸°íƒ€ ë‡Œì¡¸ì¤‘"; RUN;
+PROC EXPORT DATA=A.TIA_table                    outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ì¼ê³¼ì„± í—ˆí˜ˆì„± ë‡Œì¡¸ì¤‘" ;RUN;
+PROC EXPORT DATA=A.suicide_table               outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"   DBMS=EXCEL REPLACE; SHEET="ìžì‚´" ;RUN;
+PROC EXPORT DATA=A.mental_table                outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ìš°ìš¸ì¦" ;RUN;
+PROC EXPORT DATA=A.resp_table                   outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ì „ì²´ í˜¸í¡ê¸°ê³„ì§ˆí™˜" ;RUN;
+PROC EXPORT DATA=A.acuteup_table              outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ê¸‰ì„± ìƒê¸°ë„ ê°ì—¼" ;RUN;
+PROC EXPORT DATA=A.pneum_table                outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ì¸í”Œë£¨ì—”ìž ë° íë ´"; RUN;
+PROC EXPORT DATA=A.asthma_table               outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ì²œì‹"; RUN;
+PROC EXPORT DATA=A.copd_table                  outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ë§Œì„±íì‡„ì„±íì§ˆí™˜" ;RUN;
+PROC EXPORT DATA=A.voldep_table                outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ìš©ì ê³ ê°ˆ íƒˆìˆ˜"; RUN;
+PROC EXPORT DATA=A.frost_table                  outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ë™ìƒ"; RUN;
+PROC EXPORT DATA=A.heat_table                   outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ê³ ì˜¨ê´€ë ¨ ì§ˆí™˜(ì—´ì‚¬ë³‘, ì—´í”¼ë¡œ)"; RUN;
+PROC EXPORT DATA=A.hypothermia_table        outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ì €ì²´ì˜¨ì¦"; RUN;
+PROC EXPORT DATA=A.otherredutemp_table     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ë¹„ë™ê²° ë° ê¸°íƒ€" ;RUN;
+PROC EXPORT DATA=A.heatrelated_table          outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="ì˜¨ì—´ì§ˆí™˜ ê´€ë ¨" ;RUN;
+PROC EXPORT DATA=A.frostrelated_table          outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="í•œëž­ì§ˆí™˜ ê´€ë ¨" ;RUN;
+PROC EXPORT DATA=A.aki_table                     outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ê¸‰ì„± ì‹ ë¶€ì „ì¦"; RUN;
+PROC EXPORT DATA=A.kidney_table                outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ì‹ ìž¥ì§ˆí™˜" ;RUN;
+PROC EXPORT DATA=A.dm_table                    outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX"  DBMS=EXCEL REPLACE; SHEET="ë‹¹ë‡¨" ;RUN;
+PROC EXPORT DATA=A.vasomotor_allerg_table outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outtable\frequency_table.XLSX" DBMS=EXCEL REPLACE; SHEET="í˜ˆê´€ìš´ë™ì„± ë° ì•¨ëŸ¬ì§€ì„± ë¹„ì—¼" ;RUN;
 
+%macro exp_csv(data);
+PROC EXPORT DATA=A.&data.
+outfile="D:\SNU\ì—°êµ¬\ì§ˆë³‘ê´€ë¦¬ë³¸ë¶€\ê¸°í›„ë³´ê±´ì˜í–¥í‰ê°€_í‰ê°€ì²´ê³„êµ¬ì¶•ë°ì‹œë²”ì‚¬ì—…\2022\ìžë£Œ\NEDIS\outcsv\&data..csv"   
+DBMS=csv REPLACE; RUN;
+%mend;
 
+%exp_csv(Acutelow_dailycount);
+%exp_csv(Acuteup_dailycount);
+%exp_csv(Aki_dailycount);
+%exp_csv(Amoebiasis_dailycount);
+%exp_csv(Angina_dailycount);
+%exp_csv(Asthma_dailycount);
+%exp_csv(Cerebvas_dailycount);
+%exp_csv(Cholera_dailycount);
+%exp_csv(Circ_dailycount);
+%exp_csv(Copd_dailycount);
+%exp_csv(Dm_dailycount);
+%exp_csv(Frostrelated_dailycount);
+%exp_csv(Frost_dailycount);
+%exp_csv(Heatrelated_dailycount);
+%exp_csv(Heat_dailycount);
+%exp_csv(Hemostroke_dailycount);
+%exp_csv(Hypothermia_dailycount);
+%exp_csv(Intestinal_infec_dailycount);
+%exp_csv(Ischhd_dailycount);
+%exp_csv(Ischstroke_dailycount);
+%exp_csv(Kidney_dailycount);
+%exp_csv(Mental_dailycount);
+%exp_csv(Mi_dailycount);
+%exp_csv(Otherbac_food_dailycount);
+%exp_csv(Otherbac_dailycount);
+%exp_csv(Othergast_coli_dailycount);
+%exp_csv(Otherprotozoal_dailycount);
+%exp_csv(Otherredutemp_dailycount);
+%exp_csv(Othersalmone_dailycount);
+%exp_csv(Otherstroke_dailycount);
+%exp_csv(Pneum_dailycount);
+%exp_csv(Resp_dailycount);
+%exp_csv(Shigellosis_dailycount);
+%exp_csv(Suicide_dailycount);
+%exp_csv(Tia_dailycount);
+%exp_csv(Tsutsugamushi_dailycount);
+%exp_csv(Typhoid_para_dailycount);
+%exp_csv(Vasomotor_allerg_dailycount);
+%exp_csv(Viral_intestinal_dailycount);
+%exp_csv(Voldep_dailycount);
+%exp_csv(Zoster_dailycount);
 
